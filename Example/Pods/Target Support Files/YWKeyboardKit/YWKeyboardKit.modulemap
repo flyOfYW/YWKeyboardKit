@@ -1,0 +1,6 @@
+framework module YWKeyboardKit {
+  umbrella header "YWKeyboardKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

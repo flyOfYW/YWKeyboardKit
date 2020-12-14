@@ -3,8 +3,8 @@ use_frameworks!
 platform :ios, '9.0'
 
 target 'YWKeyboardKit_Example' do
-  pod 'YWKeyboardKit', :path => '../'
-
+#  pod 'YWKeyboardKit', :path => '../'
+   pod 'YWKeyboardKit/LicensePlate', :path => '../'
   target 'YWKeyboardKit_Tests' do
     inherit! :search_paths
 

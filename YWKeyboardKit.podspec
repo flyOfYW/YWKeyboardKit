@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'YWKeyboardKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of YWKeyboardKit.'
+  s.summary          = '自定义键盘'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,24 +17,42 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = '车牌输入的键盘(省份编号、字母、数字)'
 
-  s.homepage         = 'https://github.com/yw/YWKeyboardKit'
+  s.homepage         = 'https://github.com/flyOfYW/YWKeyboardKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'yw' => '1498627884@qq.com' }
-  s.source           = { :git => 'https://github.com/yw/YWKeyboardKit.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/flyOfYW/YWKeyboardKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'YWKeyboardKit/Classes/**/*'
+  # s.source_files = 'YWKeyboardKit/Classes/**/*'
   
-  # s.resource_bundles = {
+  #s.resource_bundles = {
   #   'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.png']
   # }
+
+  #s.resource_bundles = {
+  #  'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
+  # }
+
+  s.subspec 'TurtleBezierPath' do |ns|
+        ns.source_files = 'YWKeyboardKit/Classes/TurtleBezierPath/*.{h,m}'
+  end
+  
+  s.subspec 'LicensePlate' do |ns|
+        ns.source_files = 'YWKeyboardKit/Classes/LicensePlate/*.{h,m}'
+        ns.dependency 'YWKeyboardKit/TurtleBezierPath'
+        ns.resource_bundles = {
+     'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
+   }
+  end
+
+
+
+
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
