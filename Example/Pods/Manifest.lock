@@ -1,9 +1,11 @@
 PODS:
-  - YWKeyboardKit/LicensePlate (0.1.0):
+  - YWKeyboardKit/InputToolbar (0.1.1)
+  - YWKeyboardKit/LicensePlate (0.1.1):
     - YWKeyboardKit/TurtleBezierPath
-  - YWKeyboardKit/TurtleBezierPath (0.1.0)
+  - YWKeyboardKit/TurtleBezierPath (0.1.1)
 
 DEPENDENCIES:
+  - YWKeyboardKit/InputToolbar (from `../`)
   - YWKeyboardKit/LicensePlate (from `../`)
 
 EXTERNAL SOURCES:
@@ -11,8 +13,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  YWKeyboardKit: 881556e77a462c4caa0005c4f2cfc22712abf7b5
+  YWKeyboardKit: 66292a5abc77e2e318d8a80b24314a8ada36b0b5
 
-PODFILE CHECKSUM: 8c3fc3b53fc2ebf8a0a69d859c97ff2629859982
+PODFILE CHECKSUM: 16fe8e6e58c3b3b2e3b3507c69cac363458dba2a
 
 COCOAPODS: 1.10.0

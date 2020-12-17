@@ -9,6 +9,7 @@
 #import "YWViewController.h"
 #import <YWKeyboardKit/YWLicensePlateView.h>
 #import <YWKeyboardKit/YWProvinceLicensePlatePrefixView.h>
+#import <YWKeyboardKit/YWInputToolbar.h>
 
 @interface YWViewController ()
 <UITextFieldDelegate>
@@ -31,7 +32,6 @@
     tf.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:tf];
     
-    
     UITextField *tf1 = [[UITextField alloc] initWithFrame:CGRectMake(100, 100, 140   , 34)];
     tf1.adjustsFontSizeToFitWidth = YES;
     tf1.placeholder = @"字母优先可切换车牌";
@@ -43,6 +43,9 @@
     tf2.adjustsFontSizeToFitWidth = YES;
     tf2.placeholder = @"一行输入车牌";
     tf2.inputView = [YWLicensePlateView getProvinceOrEnglishLicensePlate:tf2];
+    YWInputToolbar *toolbar = [YWInputToolbar getInputToolbar:tf2];
+    toolbar.title = @"ETC专用车牌键盘";
+    tf2.inputAccessoryView = toolbar;
     tf2.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:tf2];
     

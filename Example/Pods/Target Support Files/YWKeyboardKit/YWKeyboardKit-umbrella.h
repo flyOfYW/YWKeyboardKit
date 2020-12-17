@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "YWInputToolbar.h"
 #import "YWKeyboardButton.h"
 #import "YWLicensePlateView.h"
 #import "YWProvinceLicensePlatePrefixView.h"

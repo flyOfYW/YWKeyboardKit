@@ -1,9 +1,9 @@
 {
   "name": "YWKeyboardKit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "自定义键盘",
   "description": "车牌输入的键盘(省份编号、字母、数字)",
-  "homepage": "https://github.com/yw/YWKeyboardKit",
+  "homepage": "https://github.com/flyOfYW/YWKeyboardKit",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,8 +12,8 @@
     "yw": "1498627884@qq.com"
   },
   "source": {
-    "git": "https://github.com/yw/YWKeyboardKit.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/flyOfYW/YWKeyboardKit.git",
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "9.0"
@@ -36,6 +36,10 @@
           "YWKeyboardKit/Assets/*.xcassets"
         ]
       }
+    },
+    {
+      "name": "InputToolbar",
+      "source_files": "YWKeyboardKit/Classes/InputToolbar/*.{h,m}"
     }
   ]
 }

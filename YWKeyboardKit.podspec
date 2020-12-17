@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YWKeyboardKit'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = '自定义键盘'
 
 # This description is used to generate tags and improve search results.
@@ -48,6 +48,9 @@ Pod::Spec.new do |s|
         ns.resource_bundles = {
      'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
    }
+  end
+  s.subspec 'InputToolbar' do |ns|
+        ns.source_files = 'YWKeyboardKit/Classes/InputToolbar/*.{h,m}'
   end
 
 
