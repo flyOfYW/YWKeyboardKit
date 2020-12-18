@@ -15,14 +15,14 @@
     struct {
         unsigned inTouchUpInside : 1;
         unsigned amplification : 1;
+        unsigned downGary : 1;
 
     } _delegateHas;
     
 }
-@property (nonatomic, strong) YWTipUpView *buttonView;
-@property (nonatomic, readwrite) YWKeyboardButtonPosition position;
-
-@property (nonatomic, assign, readwrite) BOOL drawAmplification;
+@property (nonatomic, strong            ) YWTipUpView *buttonView;
+@property (nonatomic, readwrite         ) YWKeyboardButtonPosition position;
+@property (nonatomic, strong            ) UIColor *currentBackgorundColor;
 
 @end
 
@@ -33,7 +33,6 @@
     if (self) {
         [self commonInit];
     }
-    
     return self;
 }
 
@@ -49,6 +48,10 @@
     [[UIDevice currentDevice] playInputClick];
     if ([self isDrawAmplification]) {
         [self showInputView];
+    }
+    if ([self isNeedDownGrayEffect]) {
+        _currentBackgorundColor = self.backgroundColor;
+        self.backgroundColor = [UIColor lightTextColor];
     }
 }
 - (void)handleTouchUpInside{
@@ -71,7 +74,12 @@
 - (void)hideInputView{
     [self.buttonView removeFromSuperview];
     self.buttonView = nil;
+    if ([self isNeedDownGrayEffect]) {
+        self.backgroundColor = _currentBackgorundColor;
+        _currentBackgorundColor = nil;
+    }
     [self setNeedsDisplay];
+    
 }
 
 - (void)insertText:(NSString *)text{
@@ -139,6 +147,8 @@
 }
 
 - (void)commonInit{
+    _drawShadow = YES;
+    _drawAmplification = YES;
     if (@available(iOS 13.0, *)) {
         _keyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
             if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
@@ -199,20 +209,24 @@
     [self updateButtonPosition];
 }
 - (void)drawRect:(CGRect)rect{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    UIColor *color = self.keyColor;
-    
-    UIColor *shadow = self.keyShadowColor;
-    CGSize shadowOffset = CGSizeMake(0.1, 1.1);
-    CGFloat shadowBlurRadius = 0;
-    
-    UIBezierPath *roundedRectanglePath =
-    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
-    CGContextSaveGState(context);
-    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
-    [color setFill];
-    [roundedRectanglePath fill];
-    CGContextRestoreGState(context);
+    if (_drawShadow) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        UIColor *color = self.keyColor;
+        
+        UIColor *shadow = self.keyShadowColor;
+        CGSize shadowOffset = CGSizeMake(0.1, 1.1);
+        CGFloat shadowBlurRadius = 0;
+        
+        UIBezierPath *roundedRectanglePath =
+        [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
+        CGContextSaveGState(context);
+        CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
+        [color setFill];
+        [roundedRectanglePath fill];
+        CGContextRestoreGState(context);
+    }else{
+        [super drawRect:rect];
+    }
 }
 
 - (void)setBgIconImage:(UIImage *)bgIconImage{
@@ -239,19 +253,25 @@
     [self setTitle:input forState:UIControlStateNormal];
     [self setTitle:input forState:UIControlStateDisabled];
     [self setTitle:input forState:UIControlStateSelected];
-    
 }
 - (void)setDelegate:(id<YWKeyboardButtonDelegate>)delegate{
     _delegate = delegate;
     _delegateHas.inTouchUpInside = delegate && [delegate respondsToSelector:@selector(interceptorTouchUpInside:)];
     _delegateHas.amplification = delegate && [delegate respondsToSelector:@selector(needDrawAmplification:)];
+    _delegateHas.downGary = delegate && [delegate respondsToSelector:@selector(needDownGrayEffect:)];
 }
 - (BOOL)isDrawAmplification{
     if (_delegateHas.amplification) {
-        return [_delegate needDrawAmplification:self];
+        _drawAmplification = [_delegate needDrawAmplification:self];
     }
     //defalut is yes
-    return YES;
+    return _drawAmplification;
+}
+- (BOOL)isNeedDownGrayEffect{
+    if (_delegateHas.downGary) {//优先级别needDownGrayEffect>_downGray
+        _downGray = [_delegate needDownGrayEffect:self];
+    }
+    return _downGray;
 }
 
 @end

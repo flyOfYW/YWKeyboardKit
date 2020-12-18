@@ -1,8 +1,8 @@
 //
 //  YWLicensePlateView.h
-//  YWKeyboardKit
+//  NMChangJieCloud
 //
-//  Created by yaowei on 2020/12/14.
+//  Created by yaowei on 2018/12/14.
 //
 
 #import <UIKit/UIKit.h>

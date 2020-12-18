@@ -24,10 +24,17 @@
       "source_files": "YWKeyboardKit/Classes/TurtleBezierPath/*.{h,m}"
     },
     {
+      "name": "KeyboardButton",
+      "source_files": "YWKeyboardKit/Classes/KeyboardButton/*.{h,m}"
+    },
+    {
       "name": "LicensePlate",
       "source_files": "YWKeyboardKit/Classes/LicensePlate/*.{h,m}",
       "dependencies": {
         "YWKeyboardKit/TurtleBezierPath": [
+
+        ],
+        "YWKeyboardKit/KeyboardButton": [
 
         ]
       },
@@ -40,6 +47,20 @@
     {
       "name": "InputToolbar",
       "source_files": "YWKeyboardKit/Classes/InputToolbar/*.{h,m}"
+    },
+    {
+      "name": "IdCard",
+      "source_files": "YWKeyboardKit/Classes/IdCard/*.{h,m}",
+      "dependencies": {
+        "YWKeyboardKit/KeyboardButton": [
+
+        ]
+      },
+      "resource_bundles": {
+        "YWKeyboardKit": [
+          "YWKeyboardKit/Assets/*.xcassets"
+        ]
+      }
     }
   ]
 }

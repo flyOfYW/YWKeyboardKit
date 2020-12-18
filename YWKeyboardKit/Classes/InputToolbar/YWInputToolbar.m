@@ -77,7 +77,12 @@
     }
     return self;
 }
-
+- (void)leftAction{
+    _leftBarButton.selected = !_leftBarButton.selected;
+    if (_leftCall) {
+        _leftCall(nil);
+    }
+}
 - (void)doneAction{
     if ([self.textInput isKindOfClass:[UITextView class]]) {
         UITextView *textView = (UITextView *)self.textInput;
@@ -86,12 +91,34 @@
         UITextField *textField = (UITextField *)self.textInput;
         [textField resignFirstResponder];
     }
+    if (_doneCall) {
+        _doneCall(nil);
+    }
 }
-
+- (void)setLeftImageNormal:(UIImage *)leftImageNormal{
+    _leftImageNormal = leftImageNormal;
+    [_leftBarButton setImage:[leftImageNormal imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+}
+- (void)setLeftTitleNormal:(NSString *)leftTitleNormal{
+    _leftTitleNormal = leftTitleNormal;
+    [_leftBarButton setTitle:leftTitleNormal forState:UIControlStateNormal];
+}
+- (void)setLeftImageSelected:(UIImage *)leftImageSelected{
+    _leftImageSelected = leftImageSelected;
+    [_leftBarButton setImage:[leftImageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+}
+- (void)setLeftTitleSelected:(NSString *)leftTitleSelected{
+    _leftTitleSelected = leftTitleSelected;
+    [_leftBarButton setTitle:_leftTitleSelected forState:UIControlStateSelected];
+}
 - (void)setTitle:(NSString *)title{
     _title = title;
     [_titleBarButton setTitle:title forState:UIControlStateNormal];
     [self setNeedsLayout];
+}
+- (void)setLogo:(UIImage *)logo{
+    _logo = logo;
+    [_titleBarButton setImage:[logo imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
 }
 - (void)setDone:(NSString *)done{
     _done = done;
@@ -101,7 +128,7 @@
 
 - (UIButton *)leftBarButton{
     if (_leftBarButton == nil) {
-        _leftBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _leftBarButton = [UIButton buttonWithType:UIButtonTypeCustom];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
         if (@available(iOS 13.0, *)) {
             [_leftBarButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
@@ -115,13 +142,15 @@
         [_leftBarButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [_leftBarButton setBackgroundColor:[UIColor clearColor]];
         [_leftBarButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [_leftBarButton addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftBarButton;
 }
 - (UIButton *)titleBarButton{
     if (_titleBarButton == nil) {
-        _titleBarButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _titleBarButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _titleBarButton.titleLabel.numberOfLines = 2;
+        _titleBarButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
         if (@available(iOS 13.0, *)) {
             [_titleBarButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];

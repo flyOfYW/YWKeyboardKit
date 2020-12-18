@@ -1,8 +1,8 @@
 //
 //  YWProvinceLicensePlatePrefixView.m
-//  YWKeyboardKit
+//  NMChangJieCloud
 //
-//  Created by yaowei on 2020/12/14.
+//  Created by yaowei on 2018/12/14.
 //
 
 #import "YWProvinceLicensePlatePrefixView.h"
@@ -77,11 +77,11 @@
         NSInteger page  = i / lineItem;
         YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space) + leftX;
-        btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width, 1.34375 * width);
+        btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width, height);
         if (i == 38){
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.tag = 902;
-            btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width * 2 + space, 1.34375 * width);
+            btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width * 2 + space, height);
             btn.keyColor = self.deleteColor;
             btn.delegate = self;
         }

@@ -32,7 +32,7 @@
     return self;
 }
 - (void)drawRect:(CGRect)rect{
-    if (_button.isDrawAmplification) {
+    if (_button.drawAmplification) {
         [self drawInputView:rect];
     }else{
         [super drawRect:rect];

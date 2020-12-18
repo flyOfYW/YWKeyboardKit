@@ -10,11 +10,12 @@
 #endif
 #endif
 
+#import "YWIdCardKeyboardView.h"
 #import "YWInputToolbar.h"
 #import "YWKeyboardButton.h"
+#import "YWTipUpView.h"
 #import "YWLicensePlateView.h"
 #import "YWProvinceLicensePlatePrefixView.h"
-#import "YWTipUpView.h"
 #import "TurtleBezierPath.h"
 
 FOUNDATION_EXPORT double YWKeyboardKitVersionNumber;

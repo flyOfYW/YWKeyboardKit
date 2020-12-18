@@ -1,20 +1,29 @@
 PODS:
+  - YWKeyboardKit (0.1.1):
+    - YWKeyboardKit/IdCard (= 0.1.1)
+    - YWKeyboardKit/InputToolbar (= 0.1.1)
+    - YWKeyboardKit/KeyboardButton (= 0.1.1)
+    - YWKeyboardKit/LicensePlate (= 0.1.1)
+    - YWKeyboardKit/TurtleBezierPath (= 0.1.1)
+  - YWKeyboardKit/IdCard (0.1.1):
+    - YWKeyboardKit/KeyboardButton
   - YWKeyboardKit/InputToolbar (0.1.1)
+  - YWKeyboardKit/KeyboardButton (0.1.1)
   - YWKeyboardKit/LicensePlate (0.1.1):
+    - YWKeyboardKit/KeyboardButton
     - YWKeyboardKit/TurtleBezierPath
   - YWKeyboardKit/TurtleBezierPath (0.1.1)
 
 DEPENDENCIES:
-  - YWKeyboardKit/InputToolbar (from `../`)
-  - YWKeyboardKit/LicensePlate (from `../`)
+  - YWKeyboardKit (from `../`)
 
 EXTERNAL SOURCES:
   YWKeyboardKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  YWKeyboardKit: 66292a5abc77e2e318d8a80b24314a8ada36b0b5
+  YWKeyboardKit: 780b9240718ae0362a0ccfb4c2f2af805e302688
 
-PODFILE CHECKSUM: 16fe8e6e58c3b3b2e3b3507c69cac363458dba2a
+PODFILE CHECKSUM: c131d095bbb8167d868b0d6613538e7915fc79da
 
 COCOAPODS: 1.10.0

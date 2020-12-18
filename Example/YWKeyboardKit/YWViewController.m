@@ -11,6 +11,9 @@
 #import <YWKeyboardKit/YWProvinceLicensePlatePrefixView.h>
 #import <YWKeyboardKit/YWInputToolbar.h>
 
+#import <YWKeyboardKit/YWIdCardKeyboardView.h>
+
+
 @interface YWViewController ()
 <UITextFieldDelegate>
 @end
@@ -49,6 +52,34 @@
     tf2.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:tf2];
     
+    UITextField *tf3 = [[UITextField alloc] initWithFrame:CGRectMake(20, 180, 160   , 34)];
+    tf3.adjustsFontSizeToFitWidth = YES;
+    tf3.placeholder = @"身份证键盘";
+    tf3.inputView = [YWIdCardKeyboardView getIdCardKeyboardDividerView:tf3];
+    YWInputToolbar *toolbar1 = [YWInputToolbar getInputToolbar:tf3];
+    toolbar1.title = @"身份证专用键盘";
+    tf3.inputAccessoryView = toolbar1;
+    tf3.borderStyle = UITextBorderStyleRoundedRect;
+    [self.view addSubview:tf3];
+    
+    UITextField *tf4 = [[UITextField alloc] initWithFrame:CGRectMake(190, 180, 160   , 34)];
+    tf4.adjustsFontSizeToFitWidth = YES;
+    tf4.placeholder = @"身份证键盘";
+    __block  YWIdCardKeyboardView *idCardKeyboardShadowView = [YWIdCardKeyboardView getIdCardKeyboardShadowView:tf4];
+    tf4.inputView = idCardKeyboardShadowView;
+    YWInputToolbar *toolbar2 = [YWInputToolbar getInputToolbar:tf4];
+    toolbar2.leftImageNormal = [UIImage imageNamed:@"icon_eye"];
+    toolbar2.leftImageSelected = [UIImage imageNamed:@"icon_eyeclose"];
+    toolbar2.title = @" 身份证专用键盘";
+    if (@available(iOS 13.0, *)) {
+        toolbar2.logo = [[UIImage systemImageNamed:@"applelogo"] imageWithTintColor:[UIColor systemBlueColor]];
+    }
+    toolbar2.leftCall = ^(id  _Nullable obj) {
+        idCardKeyboardShadowView.downGrayEffect = !idCardKeyboardShadowView.downGrayEffect;
+    };
+    tf4.inputAccessoryView = toolbar2;
+    tf4.borderStyle = UITextBorderStyleRoundedRect;
+    [self.view addSubview:tf4];
     
 }
 

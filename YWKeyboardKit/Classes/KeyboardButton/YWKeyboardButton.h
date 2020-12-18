@@ -39,6 +39,10 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 /// @param button 当前操作对象
 - (BOOL)needDrawAmplification:(YWKeyboardButton *)button;
 
+/// 是否需要按下变灰效果
+/// @param button 当前操作对象
+- (BOOL)needDownGrayEffect:(YWKeyboardButton *)button;
+
 @end
 
 @interface YWKeyboardButton : UIButton
@@ -47,6 +51,14 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 @property (nonatomic, strong) UIColor *keyTextColor;
 @property (nonatomic, strong) UIColor *keyShadowColor;
 @property (nonatomic, strong) UIColor *keyHighlightedColor;
+/**默认YES*/
+@property (nonatomic, assign) BOOL drawShadow;
+/**默认YES*/
+@property (nonatomic, assign) BOOL drawAmplification;
+/**按下变灰效果，默认NO*/
+@property (nonatomic, assign) BOOL downGray;
+
+
 /**输入框*/
 @property (nonatomic, weak) id<UITextInput> textInput;
 
@@ -59,9 +71,6 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 @property (nonatomic, copy, nullable) UIImage *bgIconImage;
 
 @property (nonatomic, copy, nullable) UIImage *iconImage;
-
-
-- (BOOL)isDrawAmplification;
 
 @end
 
