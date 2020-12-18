@@ -6,7 +6,7 @@
 //
 
 #import "YWLicensePlateView.h"
-#import "YWKeyboardButton.h"
+#import <YWKeyboardKit/YWKeyboardButton.h>
 
 @interface YWLicensePlateView ()<YWKeyboardButtonDelegate>
 

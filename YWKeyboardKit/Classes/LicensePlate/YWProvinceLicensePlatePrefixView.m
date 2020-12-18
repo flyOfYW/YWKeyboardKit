@@ -6,7 +6,7 @@
 //
 
 #import "YWProvinceLicensePlatePrefixView.h"
-#import "YWKeyboardButton.h"
+#import <YWKeyboardKit/YWKeyboardButton.h>
 
 @interface YWProvinceLicensePlatePrefixView ()<YWKeyboardButtonDelegate>
 

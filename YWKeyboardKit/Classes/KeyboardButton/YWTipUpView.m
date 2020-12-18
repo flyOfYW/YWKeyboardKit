@@ -8,7 +8,7 @@
 
 #import "YWTipUpView.h"
 #import "YWKeyboardButton.h"
-#import "TurtleBezierPath.h"
+#import <YWKeyboardKit/TurtleBezierPath.h>
 
 @interface YWTipUpView ()
 

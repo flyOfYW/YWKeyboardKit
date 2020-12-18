@@ -6,7 +6,7 @@
 //
 
 #import "YWIdCardKeyboardView.h"
-#import "YWKeyboardButton.h"
+#import <YWKeyboardKit/YWKeyboardButton.h>
 
 @interface YWIdCardKeyboardView ()<YWKeyboardButtonDelegate>
 {

@@ -1,6 +1,6 @@
 {
   "name": "YWKeyboardKit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "summary": "自定义键盘",
   "description": "车牌输入的键盘(省份编号、字母、数字)",
   "homepage": "https://github.com/flyOfYW/YWKeyboardKit",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/flyOfYW/YWKeyboardKit.git",
-    "tag": "0.1.1"
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "9.0"
@@ -25,15 +25,17 @@
     },
     {
       "name": "KeyboardButton",
-      "source_files": "YWKeyboardKit/Classes/KeyboardButton/*.{h,m}"
+      "source_files": "YWKeyboardKit/Classes/KeyboardButton/*.{h,m}",
+      "dependencies": {
+        "YWKeyboardKit/TurtleBezierPath": [
+
+        ]
+      }
     },
     {
       "name": "LicensePlate",
       "source_files": "YWKeyboardKit/Classes/LicensePlate/*.{h,m}",
       "dependencies": {
-        "YWKeyboardKit/TurtleBezierPath": [
-
-        ],
         "YWKeyboardKit/KeyboardButton": [
 
         ]
