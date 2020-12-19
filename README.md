@@ -12,6 +12,20 @@
 -  车牌键盘
 -  身份键盘
 
+## Installation
+
+YWKeyboardKit is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'YWKeyboardKit'//包含所有的键盘
+pod 'YWKeyboardKit/LicensePlate'//只引入车牌键盘
+pod 'YWKeyboardKit/IdCard'//只引入身份键盘
+```
+
+## 效果图
+<img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/id_card_1%402x.png" width="200" height="120"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/id_card_2%402x.png" width="200" height="120"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_1%402x.png"   width="200" height="141"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_2%402x.png"   width="200" height="148"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_3%402x.png"   width="200" height="145">
+
 
 ## Example
 
@@ -47,19 +61,6 @@ toolbar2.leftCall = ^(id  _Nullable obj) {
 tf4.inputAccessoryView = toolbar2;
 [self.view addSubview:tf4];
 
-```
-
-
-
-## Installation
-
-YWKeyboardKit is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'YWKeyboardKit'//包含所有的键盘
-pod 'YWKeyboardKit/LicensePlate'//只引入车牌键盘
-pod 'YWKeyboardKit/IdCard'//只引入身份键盘
 ```
 
 ## Author
