@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'YWKeyboardKit'
-s.version          = '0.1.2'
+s.version          = '0.1.3'
 s.summary          = '自定义键盘'
 
 # This description is used to generate tags and improve search results.
@@ -17,7 +17,7 @@ s.summary          = '自定义键盘'
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-s.description      = '车牌输入的键盘(省份编号、字母、数字)'
+s.description      = '车牌输入的键盘(省份编号、字母、数字)，自定义身份证键盘'
 
 s.homepage         = 'https://github.com/flyOfYW/YWKeyboardKit'
 # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'

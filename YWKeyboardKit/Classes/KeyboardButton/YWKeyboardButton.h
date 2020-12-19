@@ -47,10 +47,18 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 
 @interface YWKeyboardButton : UIButton
 @property (nonatomic, strong) NSString *input;
+/**键盘颜色*/
 @property (nonatomic, strong) UIColor *keyColor;
+/**键盘上的文字颜色*/
 @property (nonatomic, strong) UIColor *keyTextColor;
+/**底部边距线颜色*/
 @property (nonatomic, strong) UIColor *keyShadowColor;
+
 @property (nonatomic, strong) UIColor *keyHighlightedColor;
+
+/**按下效果颜色*/
+@property (nonatomic, strong) UIColor *downGrayEffectColor;
+
 /**默认YES*/
 @property (nonatomic, assign) BOOL drawShadow;
 /**默认YES*/

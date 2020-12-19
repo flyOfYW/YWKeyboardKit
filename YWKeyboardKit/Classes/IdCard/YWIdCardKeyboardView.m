@@ -32,7 +32,8 @@
 }
 - (instancetype)initWithFrame:(CGRect)frame
                inputViewStyle:(UIInputViewStyle)inputViewStyle
-                    textInput:(id<UITextInput>)textInput cellType:(NSInteger)cellType{
+                    textInput:(id<UITextInput>)textInput
+                     cellType:(NSInteger)cellType{
     self = [super initWithFrame:frame inputViewStyle:inputViewStyle];
     if (self) {
         _cellType = cellType;
@@ -51,34 +52,29 @@
         return _downGrayEffect;
     }
     if (_cellType == 1) {
-        if (!_downGrayEffect) {
-            button.highlighted = NO;
-        }
+        return _downGrayEffect;
     }
     return NO;
 }
 //MARK: --- 单元格圆角样式的view ---
 - (void)createShadowView{
-    
     NSInteger lineItem = 3;
     CGFloat space = 10;
     NSInteger i = 0;
     CGFloat top = 10;
     CGFloat width = _itemWidth;
-    CGFloat height = 0.33 * width;
+    CGFloat height = 0.34 * width;
     CGFloat leftX = 10;
 
     for (NSString *kText in self.numList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
-        YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeSystem];
+        YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space) + leftX;
         btn.frame = CGRectMake(currentX, top + (height + top) * page, width, height);
         btn.drawAmplification = NO;
         if ([kText isEqual:@""]) {
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
-            btn.keyColor = self.deleteColor;
-        }else{
             btn.keyColor = self.deleteColor;
         }
         btn.delegate = self;
@@ -102,7 +98,7 @@
     for (NSString *kText in self.numList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
-        YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeSystem];
+        YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space);
         btn.frame = CGRectMake(currentX, top + (height + 1) * page, width, height);
         btn.drawShadow = NO;
@@ -110,13 +106,10 @@
         if ([kText isEqual:@""]) {
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.keyColor = self.deleteColor;
-        }else{
-            btn.keyColor = self.deleteColor;
         }
         btn.delegate = self;
         btn.input = kText;
         btn.textInput = _textInput;
-        btn.backgroundColor = self.keyShadowColor;
         [self addSubview:btn];
         i ++;
     }
@@ -137,14 +130,15 @@
 
 - (CGSize)sizeThatFits:(CGSize)size{
     CGSize sizeThatFit = [super sizeThatFits:size];
+    CGFloat lbh = YW_KEYBOARD_TABBARBOTTOM;
     if (_cellType == 0) {
         _itemWidth = ([UIScreen mainScreen].bounds.size.width - 2)/3;
         CGFloat height = 0.34 * _itemWidth;
-        sizeThatFit.height = height * 4 + YW_KEYBOARD_TABBARBOTTOM + 3;
+        sizeThatFit.height = height * 4 + lbh + 3;
     }else if(_cellType == 1){
         _itemWidth = ([UIScreen mainScreen].bounds.size.width - 40)/3;
-        CGFloat height = 0.33 * _itemWidth;
-        sizeThatFit.height = height * 4 + YW_KEYBOARD_TABBARBOTTOM + 40;
+        CGFloat height = 0.34 * _itemWidth;
+        sizeThatFit.height = height * 4 + (lbh > 0 ? lbh : 10) + 40;
     }
     return sizeThatFit;
 }

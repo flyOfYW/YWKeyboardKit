@@ -13,10 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<UITextInput> textInput;
 /**是否需要按下变灰效果*/
 @property (nonatomic, assign        ) BOOL downGrayEffect;
+
 /**分割线形式的键盘*/
 + (instancetype)getIdCardKeyboardDividerView:(id<UITextInput>)textInput;
 /**间隔形式的键盘*/
 + (instancetype)getIdCardKeyboardShadowView:(id<UITextInput>)textInput;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

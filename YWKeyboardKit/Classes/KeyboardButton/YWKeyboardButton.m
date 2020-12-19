@@ -22,7 +22,6 @@
 }
 @property (nonatomic, strong            ) YWTipUpView *buttonView;
 @property (nonatomic, readwrite         ) YWKeyboardButtonPosition position;
-@property (nonatomic, strong            ) UIColor *currentBackgorundColor;
 
 @end
 
@@ -50,8 +49,7 @@
         [self showInputView];
     }
     if ([self isNeedDownGrayEffect]) {
-        _currentBackgorundColor = self.backgroundColor;
-        self.backgroundColor = [UIColor lightTextColor];
+        [self setNeedsDisplay];
     }
 }
 - (void)handleTouchUpInside{
@@ -74,10 +72,6 @@
 - (void)hideInputView{
     [self.buttonView removeFromSuperview];
     self.buttonView = nil;
-    if ([self isNeedDownGrayEffect]) {
-        self.backgroundColor = _currentBackgorundColor;
-        _currentBackgorundColor = nil;
-    }
     [self setNeedsDisplay];
     
 }
@@ -181,10 +175,11 @@
     
     _keyHighlightedColor = [UIColor colorWithRed:213/255.f green:214/255.f blue:216/255.f alpha:1];
     
+    _downGrayEffectColor = [UIColor colorWithRed:213/255.f green:214/255.f blue:216/255.f alpha:1];
     [self setTitleColor:_keyTextColor forState:UIControlStateNormal];
     [self setTitleColor:_keyTextColor forState:UIControlStateDisabled];
     [self setTitleColor:_keyTextColor forState:UIControlStateSelected];
-    
+
     //    UIControlEventTouchUpInside 先回触发 handleTouchDown ，才到 handleTouchUpInside
     [self addTarget:self action:@selector(handleTouchDown)
    forControlEvents:UIControlEventTouchDown];
@@ -209,25 +204,103 @@
     [self updateButtonPosition];
 }
 - (void)drawRect:(CGRect)rect{
-    if (_drawShadow) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        UIColor *color = self.keyColor;
-        
-        UIColor *shadow = self.keyShadowColor;
-        CGSize shadowOffset = CGSizeMake(0.1, 1.1);
-        CGFloat shadowBlurRadius = 0;
-        
-        UIBezierPath *roundedRectanglePath =
-        [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
-        CGContextSaveGState(context);
-        CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
-        [color setFill];
-        [roundedRectanglePath fill];
-        CGContextRestoreGState(context);
+    if (_drawShadow) {//绘制按钮的样式
+        //进一步判断是否需要绘制点击效果
+        [self judgeGrayEffectOfDrawShadow];
     }else{
-        [super drawRect:rect];
+        [self judgeGrayEffectOfNoDrawShadow:rect];
     }
 }
+- (void)judgeGrayEffectOfDrawShadow{
+    if ([self isNeedDownGrayEffect]) {//需要绘制点击效果
+        if (self.isHighlighted) {//当前处于按下状态
+            [self drawDownGrayEffectOfDrawShadow];
+            return;
+        }
+        //松手指，松开状态：还原原来的效果
+        [self drawBorderStyle];
+        return;
+    }
+    //不需要点击效果
+    [self drawBorderStyle];
+}
+- (void)judgeGrayEffectOfNoDrawShadow:(CGRect)rect{
+    if ([self isNeedDownGrayEffect]) {//需要绘制点击效果
+        if (self.isHighlighted) {//当前处于按下状态
+            [self drawDownGrayEffectOfNoDrawShadow];
+            return;
+        }
+        //松手指，松开状态：还原原来的效果
+        [self drawDefalutOfNoDrawShadow];
+        return;
+    }
+    //不需要点击效果
+    [super drawRect:rect];
+}
+
+- (void)drawBorderStyle{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor *color = self.keyColor;
+    
+    UIColor *shadow = self.keyShadowColor;
+    CGSize shadowOffset = CGSizeMake(0.1, 1.1);
+    CGFloat shadowBlurRadius = 0;
+    
+    UIBezierPath *roundedRectanglePath =
+    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
+    CGContextSaveGState(context);
+    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
+    [color setFill];
+    [roundedRectanglePath fill];
+    CGContextRestoreGState(context);
+}
+- (void)drawDownGrayEffectOfDrawShadow{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor *color = self.downGrayEffectColor;
+    
+    UIColor *shadow = self.keyShadowColor;
+    CGSize shadowOffset = CGSizeMake(0.1, 1.1);
+    CGFloat shadowBlurRadius = 0;
+    
+    UIBezierPath *roundedRectanglePath =
+    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
+    CGContextSaveGState(context);
+    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
+    [color setFill];
+    [roundedRectanglePath fill];
+    CGContextRestoreGState(context);
+}
+//MARK: --- 按下效果相关 ----
+
+/// 默认【原始效果】
+- (void)drawDefalutOfNoDrawShadow{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor *color = self.keyColor;
+    UIBezierPath *roundedRectanglePath = [UIBezierPath bezierPathWithRect:
+                                          CGRectMake(0,
+                                                     0,
+                                                     self.frame.size.width,
+                                                     self.frame.size.height)];
+    CGContextSaveGState(context);
+    [color setFill];
+    [roundedRectanglePath fill];
+    CGContextRestoreGState(context);
+}
+/// 按下的效果设置
+- (void)drawDownGrayEffectOfNoDrawShadow{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor *color = self.downGrayEffectColor;
+    UIBezierPath *roundedRectanglePath = [UIBezierPath bezierPathWithRect:
+                                          CGRectMake(0,
+                                                     0,
+                                                     self.frame.size.width,
+                                                     self.frame.size.height)];
+    CGContextSaveGState(context);
+    [color setFill];
+    [roundedRectanglePath fill];
+    CGContextRestoreGState(context);
+}
+
 
 - (void)setBgIconImage:(UIImage *)bgIconImage{
     _bgIconImage = bgIconImage;
