@@ -63,7 +63,6 @@
         v;
     })];
     
-    
     for (NSString *kText in self.proviceCodeList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;

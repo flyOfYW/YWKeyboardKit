@@ -24,6 +24,9 @@
 
 @property (nonatomic, strong, nullable) NSBundle *thisBundle;
 
+@property (nonatomic, strong, nullable) NSTimer *timer;
+
+
 @end
 
 
@@ -125,6 +128,7 @@
             btn.keyColor = self.deleteColor;
             btn.tag = 902;
             btn.delegate = self;
+            [self addLongGesAction:btn];
         }
         btn.input = kText;
         btn.textInput = _textInput;
@@ -189,6 +193,7 @@
             btn.tag = 902;
             btn.keyColor = self.deleteColor;
             btn.delegate = self;
+            [self addLongGesAction:btn];
         }
         btn.input = kText;
         btn.textInput = _textInput;
@@ -206,8 +211,30 @@
     _proviceCodeView.hidden = YES;
     _numPinView.hidden = NO;
 }
+//MARK: --- 长按 delete ----
+- (void)addLongGesAction:(YWKeyboardButton *) btn{
+    UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(deleteWithLognGes:)];
+    [btn addGestureRecognizer:ges];
+}
 
-
+- (void)deleteWithLognGes:(UILongPressGestureRecognizer *)sender{
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        [self.timer invalidate];
+        self.timer = nil;
+        self.timer = [NSTimer timerWithTimeInterval:0.1
+                                             target:self
+                                           selector:@selector(deleteAction)
+                                           userInfo:nil
+                                            repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }else if (sender.state == UIGestureRecognizerStateEnded){
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+}
+- (void)deleteAction{
+    [self.textInput deleteBackward];
+}
 //MARK: --- load YWKeyboardKit Bundle image ----
 - (UIImage *)getImageOnBundleWithImage:(NSString *)imageName{
     return [self getImageOnBundle:imageName ofType:@"png"];
@@ -270,5 +297,4 @@
     }
     return _deleteColor;
 }
-
 @end

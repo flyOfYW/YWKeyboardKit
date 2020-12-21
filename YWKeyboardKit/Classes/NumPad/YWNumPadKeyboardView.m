@@ -19,6 +19,7 @@
 @property (nonatomic, strong          ) NSMutableArray  *numDecimalList;
 @property (nonatomic, strong          ) NSMutableArray  *numList;
 @property (nonatomic, strong          ) UIColor         *deleteColor;
+@property (nonatomic, strong, nullable) NSTimer *timer;
 
 @end
 
@@ -210,6 +211,7 @@
     if ([kText isEqual:@""]) {
         btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
         btn.keyColor = self.deleteColor;
+        [self numPad_addLongGesAction:btn];
     }else if([kText isEqual:@"."]){
         btn.keyColor = self.deleteColor;
     }
@@ -219,7 +221,31 @@
     btn.textInput = _textInput;
     return btn;
 }
+//MARK: --- 长按 delete ----
+- (void)numPad_addLongGesAction:(YWKeyboardDownButton *) btn{
+    UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                      action:@selector(numPad_deleteWithLognGes:)];
+    [btn addGestureRecognizer:ges];
+}
 
+- (void)numPad_deleteWithLognGes:(UILongPressGestureRecognizer *)sender{
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        [self.timer invalidate];
+        self.timer = nil;
+        self.timer = [NSTimer timerWithTimeInterval:0.1
+                                             target:self
+                                           selector:@selector(numPad_deleteAction)
+                                           userInfo:nil
+                                            repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }else if (sender.state == UIGestureRecognizerStateEnded){
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+}
+- (void)numPad_deleteAction{
+    [self.textInput deleteBackward];
+}
 //MARK: --- load YWKeyboardKit Bundle image ----
 - (UIImage *)getImageOnBundleWithImage:(NSString *)imageName{
     return [self getImageOnBundle:imageName ofType:@"png"];
