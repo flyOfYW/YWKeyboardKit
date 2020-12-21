@@ -11,6 +11,7 @@
 ==============
 -  车牌键盘
 -  身份键盘
+-  数字键盘【支持小数点以及是否有效数字、小数点位数设置】
 
 ## Installation
 
@@ -21,6 +22,7 @@ it, simply add the following line to your Podfile:
 pod 'YWKeyboardKit'//包含所有的键盘
 pod 'YWKeyboardKit/LicensePlate'//只引入车牌键盘
 pod 'YWKeyboardKit/IdCard'//只引入身份键盘
+pod 'YWKeyboardKit/NumPad'//只引入数字键盘
 ```
 
 ## 效果图
