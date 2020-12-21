@@ -43,14 +43,6 @@
     return self;
 }
 
-
-
-
-
-
-
-
-
 - (void)createViewProviceCodeView{
     
     NSInteger lineItem = 10;

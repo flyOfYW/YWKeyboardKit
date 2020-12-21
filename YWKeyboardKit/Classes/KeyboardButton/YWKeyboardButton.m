@@ -15,8 +15,6 @@
     struct {
         unsigned inTouchUpInside : 1;
         unsigned amplification : 1;
-        unsigned downGary : 1;
-
     } _delegateHas;
     
 }
@@ -45,11 +43,8 @@
 //手指按下按钮的事件
 - (void)handleTouchDown{
     [[UIDevice currentDevice] playInputClick];
-    if ([self isDrawAmplification]) {
+    if ([self isDrawAmplification]) {//放大效果
         [self showInputView];
-    }
-    if ([self isNeedDownGrayEffect]) {
-        [self setNeedsDisplay];
     }
 }
 - (void)handleTouchUpInside{
@@ -73,7 +68,6 @@
     [self.buttonView removeFromSuperview];
     self.buttonView = nil;
     [self setNeedsDisplay];
-    
 }
 
 - (void)insertText:(NSString *)text{
@@ -141,7 +135,6 @@
 }
 
 - (void)commonInit{
-    _drawShadow = YES;
     _drawAmplification = YES;
     if (@available(iOS 13.0, *)) {
         _keyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
@@ -172,9 +165,7 @@
         _keyTextColor = [UIColor blackColor];
         _keyShadowColor = [UIColor colorWithRed:136 / 255.f green:138 / 255.f blue:142 / 255.f alpha:1];
     }
-    
-    _keyHighlightedColor = [UIColor colorWithRed:213/255.f green:214/255.f blue:216/255.f alpha:1];
-    
+        
     _downGrayEffectColor = [UIColor colorWithRed:213/255.f green:214/255.f blue:216/255.f alpha:1];
     [self setTitleColor:_keyTextColor forState:UIControlStateNormal];
     [self setTitleColor:_keyTextColor forState:UIControlStateDisabled];
@@ -204,6 +195,250 @@
     [self updateButtonPosition];
 }
 - (void)drawRect:(CGRect)rect{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor *color = self.keyColor;
+    
+    UIColor *shadow = self.keyShadowColor;
+    CGSize shadowOffset = CGSizeMake(0.1, 1.1);
+    CGFloat shadowBlurRadius = 0;
+    
+    UIBezierPath *roundedRectanglePath =
+    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
+    CGContextSaveGState(context);
+    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
+    [color setFill];
+    [roundedRectanglePath fill];
+    CGContextRestoreGState(context);
+}
+
+- (void)setBgIconImage:(UIImage *)bgIconImage{
+    _bgIconImage = bgIconImage;
+    [self setBackgroundImage:[bgIconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                    forState:UIControlStateNormal];
+    [self setBackgroundImage:[bgIconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                    forState:UIControlStateDisabled];
+    [self setBackgroundImage:[bgIconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                    forState:UIControlStateSelected];
+}
+- (void)setIconImage:(UIImage *)iconImage{
+    _iconImage = iconImage;
+    [self setImage:[iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+          forState:UIControlStateNormal];
+    [self setImage:[iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+          forState:UIControlStateDisabled];
+    [self setImage:[iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+          forState:UIControlStateSelected];
+}
+
+- (void)setInput:(NSString *)input{
+    _input = input;
+    [self setTitle:input forState:UIControlStateNormal];
+    [self setTitle:input forState:UIControlStateDisabled];
+    [self setTitle:input forState:UIControlStateSelected];
+}
+- (void)setDelegate:(id<YWKeyboardButtonDelegate>)delegate{
+    _delegate = delegate;
+    _delegateHas.inTouchUpInside = delegate && [delegate respondsToSelector:@selector(interceptorTouchUpInside:)];
+    _delegateHas.amplification = delegate && [delegate respondsToSelector:@selector(needDrawAmplification:)];
+}
+- (BOOL)isDrawAmplification{
+    if (_delegateHas.amplification) {
+        _drawAmplification = [_delegate needDrawAmplification:self];
+    }
+    //defalut is yes
+    return _drawAmplification;
+}
+@end
+
+
+
+
+
+@interface YWKeyboardDownButton ()
+{
+    struct {
+        unsigned inTouchUpInside : 1;
+        unsigned downGary : 1;
+    } _delegateHas;
+    struct {
+        unsigned effectiveDigit : 1;
+    } _dataSourceHas;
+}
+@end
+
+@implementation YWKeyboardDownButton
+
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+//手指按下按钮的事件
+- (void)handleTouchDown{
+    [[UIDevice currentDevice] playInputClick];
+    if ([self isNeedDownGrayEffect]) {
+        [self setNeedsDisplay];
+    }
+}
+- (void)handleTouchUpInside{
+    BOOL isContinue = YES;
+    if (_delegateHas.inTouchUpInside) {
+        isContinue = [_delegate interceptorTouchUpInside:self];
+    }
+    if (!isContinue) return;
+    [self insertText:self.input];
+
+}
+- (void)insertText:(NSString *)text{
+    BOOL shouldInsertText = YES;
+    
+    if ([self.textInput isKindOfClass:[UITextView class]]) {
+        // Call UITextViewDelegate methods if necessary
+        UITextView *textView = (UITextView *)self.textInput;
+        NSRange selectedRange = textView.selectedRange;
+        
+        if ([textView.delegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
+            shouldInsertText = [textView.delegate textView:textView
+                                   shouldChangeTextInRange:selectedRange
+                                           replacementText:text];
+        }
+    } else if ([self.textInput isKindOfClass:[UITextField class]]) {
+        // Call UITextFieldDelgate methods if necessary
+        UITextField *textField = (UITextField *)self.textInput;
+        NSRange selectedRange = [self textInputSelectedRange];
+        
+        if ([textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+            shouldInsertText = [textField.delegate textField:textField
+                               shouldChangeCharactersInRange:selectedRange
+                                           replacementString:text];
+        }
+        NSInteger effectiveDigit = [self isEffectiveDigit];
+        if (effectiveDigit != 0) {
+            shouldInsertText = [self canInput:textField
+                                      inRange:selectedRange
+                            replacementString:text
+                                    canDigits:effectiveDigit];
+            if ([textField.text isEqual:@"0"] && !shouldInsertText) {
+                [self.textInput deleteBackward];
+                shouldInsertText = YES;
+            }
+        }
+    }
+    if (shouldInsertText == YES) {
+        [self.textInput insertText:text];
+        if (text.length <= 0) {//delete 键
+            [self.textInput deleteBackward];
+        }
+    }
+}
+
+- (NSRange)textInputSelectedRange{
+    
+    UITextPosition *beginning = self.textInput.beginningOfDocument;
+    
+    UITextRange *selectedRange = self.textInput.selectedTextRange;
+    UITextPosition *selectionStart = selectedRange.start;
+    UITextPosition *selectionEnd = selectedRange.end;
+    
+    const NSInteger location = [self.textInput offsetFromPosition:beginning
+                                                       toPosition:selectionStart];
+    const NSInteger length = [self.textInput offsetFromPosition:selectionStart
+                                                     toPosition:selectionEnd];
+    
+    return NSMakeRange(location, length);
+}
+
+/// 判断是数字有效否可以继续输入数字
+/// @param textField 输入框
+/// @param range 选择范围
+/// @param string 单个数字
+- (BOOL)canInput:(UITextField *)textField
+         inRange:(NSRange)range
+replacementString:(NSString *)string
+       canDigits:(NSInteger)digits{
+    NSString *toString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (toString.length > 0) {
+        // 保留规则: 小数点后2位
+//        NSString *stringRegex = @"^\\-?([1-9]\\d*|0)(\\.\\d{0,2})?$";
+        NSString *stringRegex = [NSString stringWithFormat:@"^\\-?([1-9]\\d*|0)(\\.\\d{0,%zi})?$",digits];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", stringRegex];
+        BOOL flag = [predicate evaluateWithObject:toString];
+        if (!flag) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (void)commonInit{
+    _drawShadow = YES;
+    if (@available(iOS 13.0, *)) {
+        _keyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                return [UIColor colorWithRed:80.0/255.f green:80.0/255.f blue:80.0/255.f alpha:1];
+            }else{
+                return [UIColor whiteColor];
+            }
+        }];
+        _keyTextColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                return [UIColor whiteColor];
+            }else{
+                return [UIColor blackColor];
+            }
+        }];
+        _keyShadowColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                return [UIColor colorWithRed:45.0 / 255.f green:45.0 / 255.f blue:45.0 / 255.f alpha:1];
+            }else{
+                return [UIColor colorWithRed:136 / 255.f green:138 / 255.f blue:142 / 255.f alpha:1];
+            }
+        }];
+        
+        
+    } else {
+        _keyColor = [UIColor whiteColor];
+        _keyTextColor = [UIColor blackColor];
+        _keyShadowColor = [UIColor colorWithRed:136 / 255.f green:138 / 255.f blue:142 / 255.f alpha:1];
+    }
+        
+    _downGrayEffectColor = [UIColor colorWithRed:213/255.f green:214/255.f blue:216/255.f alpha:1];
+    [self setTitleColor:_keyTextColor forState:UIControlStateNormal];
+    [self setTitleColor:_keyTextColor forState:UIControlStateDisabled];
+    [self setTitleColor:_keyTextColor forState:UIControlStateSelected];
+
+    //    UIControlEventTouchUpInside 先回触发 handleTouchDown ，才到 handleTouchUpInside
+    [self addTarget:self action:@selector(handleTouchDown)
+   forControlEvents:UIControlEventTouchDown];
+    [self addTarget:self action:@selector(handleTouchUpInside)
+   forControlEvents:UIControlEventTouchUpInside];
+    
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [super touchesEnded:touches withEvent:event];
+    [self setNeedsDisplay];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+    [super touchesCancelled:touches withEvent:event];
+    [self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect{
+    if (_specificNoDown) {
+        [super drawRect:rect];
+        return;
+    }
     if (_drawShadow) {//绘制按钮的样式
         //进一步判断是否需要绘制点击效果
         [self judgeGrayEffectOfDrawShadow];
@@ -247,7 +482,11 @@
     CGFloat shadowBlurRadius = 0;
     
     UIBezierPath *roundedRectanglePath =
-    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
+    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0,
+                                                       0,
+                                                       self.frame.size.width,
+                                                       self.frame.size.height - 1)
+                               cornerRadius:4.f];
     CGContextSaveGState(context);
     CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
     [color setFill];
@@ -263,7 +502,11 @@
     CGFloat shadowBlurRadius = 0;
     
     UIBezierPath *roundedRectanglePath =
-    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 1) cornerRadius:4.f];
+    [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0,
+                                                       0,
+                                                       self.frame.size.width,
+                                                       self.frame.size.height - 1)
+                               cornerRadius:4.f];
     CGContextSaveGState(context);
     CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
     [color setFill];
@@ -302,6 +545,8 @@
 }
 
 
+
+
 - (void)setBgIconImage:(UIImage *)bgIconImage{
     _bgIconImage = bgIconImage;
     [self setBackgroundImage:[bgIconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
@@ -329,16 +574,15 @@
 }
 - (void)setDelegate:(id<YWKeyboardButtonDelegate>)delegate{
     _delegate = delegate;
-    _delegateHas.inTouchUpInside = delegate && [delegate respondsToSelector:@selector(interceptorTouchUpInside:)];
-    _delegateHas.amplification = delegate && [delegate respondsToSelector:@selector(needDrawAmplification:)];
-    _delegateHas.downGary = delegate && [delegate respondsToSelector:@selector(needDownGrayEffect:)];
+    _delegateHas.inTouchUpInside = delegate && [delegate respondsToSelector:
+                                                @selector(interceptorTouchUpInside:)];
+    _delegateHas.downGary = delegate && [delegate respondsToSelector:
+                                         @selector(needDownGrayEffect:)];
 }
-- (BOOL)isDrawAmplification{
-    if (_delegateHas.amplification) {
-        _drawAmplification = [_delegate needDrawAmplification:self];
-    }
-    //defalut is yes
-    return _drawAmplification;
+- (void)setDataSource:(id<YWKeyboardButtonDataSource>)dataSource{
+    _dataSource = dataSource;
+    _dataSourceHas.effectiveDigit = dataSource && [dataSource respondsToSelector:
+                                                   @selector(isEffectiveDigitForInput:)];
 }
 - (BOOL)isNeedDownGrayEffect{
     if (_delegateHas.downGary) {//优先级别needDownGrayEffect>_downGray
@@ -346,5 +590,10 @@
     }
     return _downGray;
 }
-
+- (NSInteger)isEffectiveDigit{
+    if (_dataSourceHas.effectiveDigit) {
+        return [_dataSource isEffectiveDigitForInput:self];
+    }
+    return 0;
+}
 @end

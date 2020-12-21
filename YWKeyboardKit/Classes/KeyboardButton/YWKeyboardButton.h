@@ -21,7 +21,6 @@ isBangsScreen; \
 
 
 NS_ASSUME_NONNULL_BEGIN
-@class YWKeyboardButton;
 
 typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
     YWKeyboardButtonPositionLeft,
@@ -33,19 +32,30 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 @optional
 
 /**执行YWKeyboardButton内部的TouchUpInside，YES-继续执行内部的实现，NO-不需要执行*/
-- (BOOL)interceptorTouchUpInside:(YWKeyboardButton *)button;
+- (BOOL)interceptorTouchUpInside:(UIButton *)button;
 
 /// 是否需要点击放大效果
 /// @param button 当前操作对象
-- (BOOL)needDrawAmplification:(YWKeyboardButton *)button;
+- (BOOL)needDrawAmplification:(UIButton *)button;
 
 /// 是否需要按下变灰效果
 /// @param button 当前操作对象
-- (BOOL)needDownGrayEffect:(YWKeyboardButton *)button;
+- (BOOL)needDownGrayEffect:(UIButton *)button;
 
 @end
 
+@protocol YWKeyboardButtonDataSource <NSObject>
+@optional
+/**是否录入有效数字,0-可以随意输入，1-保留一位小数点的有效数字，n-保留n位小数点的有效数字*/
+- (NSInteger)isEffectiveDigitForInput:(UIButton *)button;
+@end
+
+
+
+
+
 @interface YWKeyboardButton : UIButton
+
 @property (nonatomic, strong) NSString *input;
 /**键盘颜色*/
 @property (nonatomic, strong) UIColor *keyColor;
@@ -53,20 +63,10 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 @property (nonatomic, strong) UIColor *keyTextColor;
 /**底部边距线颜色*/
 @property (nonatomic, strong) UIColor *keyShadowColor;
-
-@property (nonatomic, strong) UIColor *keyHighlightedColor;
-
 /**按下效果颜色*/
 @property (nonatomic, strong) UIColor *downGrayEffectColor;
-
-/**默认YES*/
-@property (nonatomic, assign) BOOL drawShadow;
 /**默认YES*/
 @property (nonatomic, assign) BOOL drawAmplification;
-/**按下变灰效果，默认NO*/
-@property (nonatomic, assign) BOOL downGray;
-
-
 /**输入框*/
 @property (nonatomic, weak) id<UITextInput> textInput;
 
@@ -74,12 +74,44 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 
 @property (nonatomic, weak) id <YWKeyboardButtonDelegate>delegate;
 
-
-
 @property (nonatomic, copy, nullable) UIImage *bgIconImage;
 
 @property (nonatomic, copy, nullable) UIImage *iconImage;
 
 @end
+
+
+@interface YWKeyboardDownButton : UIButton
+
+@property (nonatomic, strong) NSString *input;
+/**键盘颜色*/
+@property (nonatomic, strong) UIColor *keyColor;
+/**键盘上的文字颜色*/
+@property (nonatomic, strong) UIColor *keyTextColor;
+/**底部边距线颜色*/
+@property (nonatomic, strong) UIColor *keyShadowColor;
+/**按下效果颜色*/
+@property (nonatomic, strong) UIColor *downGrayEffectColor;
+/**默认YES*/
+@property (nonatomic, assign) BOOL drawShadow;
+/**按下变灰效果，默认NO*/
+@property (nonatomic, assign) BOOL downGray;
+/**特定不需要点击效果*/
+@property (nonatomic, assign) BOOL specificNoDown;
+
+/**输入框*/
+@property (nonatomic, weak) id<UITextInput> textInput;
+
+@property (nonatomic, weak) id <YWKeyboardButtonDelegate>delegate;
+
+@property (nonatomic, weak) id <YWKeyboardButtonDataSource>dataSource;
+
+@property (nonatomic, copy, nullable) UIImage *bgIconImage;
+
+@property (nonatomic, copy, nullable) UIImage *iconImage;
+
+
+@end
+
 
 NS_ASSUME_NONNULL_END

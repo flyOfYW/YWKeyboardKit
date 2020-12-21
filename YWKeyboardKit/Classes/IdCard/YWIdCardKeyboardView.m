@@ -11,12 +11,12 @@
 @interface YWIdCardKeyboardView ()<YWKeyboardButtonDelegate>
 {
     CGFloat _itemWidth;
+    CGFloat _dividerSpace;
 }
 @property (nonatomic, weak,  readwrite) id<UITextInput> textInput;
 @property (nonatomic, strong          ) NSMutableArray  *numList;
-@property (nonatomic, strong          ) UIColor         *deleteColor;
 @property (nonatomic, strong, nullable) NSBundle        *thisBundle;
-@property (nonatomic, strong          ) UIColor         *keyShadowColor;
+@property (nonatomic, strong          ) UIColor         *deleteColor;
 @property (nonatomic, assign          ) NSInteger        cellType;
 @end
 
@@ -37,6 +37,7 @@
     self = [super initWithFrame:frame inputViewStyle:inputViewStyle];
     if (self) {
         _cellType = cellType;
+        _dividerSpace = 0.5;
         [self sizeToFit];
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _textInput = textInput;
@@ -69,10 +70,9 @@
     for (NSString *kText in self.numList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
-        YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
+        YWKeyboardDownButton *btn = [YWKeyboardDownButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space) + leftX;
         btn.frame = CGRectMake(currentX, top + (height + top) * page, width, height);
-        btn.drawAmplification = NO;
         if ([kText isEqual:@""]) {
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.keyColor = self.deleteColor;
@@ -89,7 +89,7 @@
 - (void)createDividerView{
     
     NSInteger lineItem = 3;
-    CGFloat space = 1;
+    CGFloat space = _dividerSpace;
     NSInteger i = 0;
     CGFloat top = 0;
     CGFloat width = _itemWidth;
@@ -98,11 +98,10 @@
     for (NSString *kText in self.numList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
-        YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
+        YWKeyboardDownButton *btn = [YWKeyboardDownButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space);
-        btn.frame = CGRectMake(currentX, top + (height + 1) * page, width, height);
+        btn.frame = CGRectMake(currentX, top + (height + space) * page, width, height);
         btn.drawShadow = NO;
-        btn.drawAmplification = NO;
         if ([kText isEqual:@""]) {
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.keyColor = self.deleteColor;
@@ -132,9 +131,9 @@
     CGSize sizeThatFit = [super sizeThatFits:size];
     CGFloat lbh = YW_KEYBOARD_TABBARBOTTOM;
     if (_cellType == 0) {
-        _itemWidth = ([UIScreen mainScreen].bounds.size.width - 2)/3;
+        _itemWidth = ([UIScreen mainScreen].bounds.size.width - _dividerSpace * 2)/3;
         CGFloat height = 0.34 * _itemWidth;
-        sizeThatFit.height = height * 4 + lbh + 3;
+        sizeThatFit.height = height * 4 + lbh + _dividerSpace * 3;
     }else if(_cellType == 1){
         _itemWidth = ([UIScreen mainScreen].bounds.size.width - 40)/3;
         CGFloat height = 0.34 * _itemWidth;
@@ -197,21 +196,4 @@
     }
     return _deleteColor;
 }
-
-- (UIColor *)keyShadowColor{
-    if (@available(iOS 13.0, *)) {
-        _keyShadowColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                return [UIColor colorWithRed:45.0 / 255.f green:45.0 / 255.f blue:45.0 / 255.f alpha:1];
-            }else{
-                return [UIColor whiteColor];
-            }
-        }];
-        
-    } else {
-        _keyShadowColor = [UIColor whiteColor];
-    }
-    return _keyShadowColor;;
-}
-
 @end

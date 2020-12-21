@@ -12,6 +12,7 @@
 #import <YWKeyboardKit/YWInputToolbar.h>
 
 #import <YWKeyboardKit/YWIdCardKeyboardView.h>
+#import <YWKeyboardKit/YWNumPadKeyboardView.h>
 
 
 @interface YWViewController ()
@@ -81,6 +82,40 @@
     tf4.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:tf4];
     
+    UITextField *tf5 = [[UITextField alloc] initWithFrame:CGRectMake(20, 220, 160   , 34)];
+    tf5.adjustsFontSizeToFitWidth = YES;
+    tf5.placeholder = @"数字键盘带小数点";
+    YWNumPadKeyboardView * numPadKeyboardView = [YWNumPadKeyboardView getDecimalKeyboardDividerView:tf5];
+    tf5.inputView = numPadKeyboardView;
+    tf5.borderStyle = UITextBorderStyleRoundedRect;
+    [self.view addSubview:tf5];
+    
+    UITextField *tf6 = [[UITextField alloc] initWithFrame:CGRectMake(190, 220, 160   , 34)];
+    tf6.adjustsFontSizeToFitWidth = YES;
+    tf6.placeholder = @"只能输入有效数字";
+    YWNumPadKeyboardView * numPadKeyboardView1 = [YWNumPadKeyboardView getDecimalKeyboardShadowView:tf6];
+    numPadKeyboardView1.effectiveDigit = YES;
+    tf6.inputView = numPadKeyboardView1;
+    tf6.borderStyle = UITextBorderStyleRoundedRect;
+    [self.view addSubview:tf6];
+
+    UITextField *tf7 = [[UITextField alloc] initWithFrame:CGRectMake(20, 260, 160   , 34)];
+    tf7.adjustsFontSizeToFitWidth = YES;
+    tf7.placeholder = @"纯数字键盘带小数点";
+    YWNumPadKeyboardView * numPadKeyboardView2 = [YWNumPadKeyboardView getNumKeyboardDividerView:tf7];
+    tf7.inputView = numPadKeyboardView2;
+    tf7.borderStyle = UITextBorderStyleRoundedRect;
+    [self.view addSubview:tf7];
+    
+    UITextField *tf8 = [[UITextField alloc] initWithFrame:CGRectMake(190, 260, 160   , 34)];
+    tf8.adjustsFontSizeToFitWidth = YES;
+    tf8.placeholder = @"纯数字有效数字";
+    YWNumPadKeyboardView * numPadKeyboardView3 = [YWNumPadKeyboardView getNumKeyboardShadowView:tf8];
+    numPadKeyboardView3.effectiveDigit = YES;
+    tf8.inputView = numPadKeyboardView3;
+    tf8.borderStyle = UITextBorderStyleRoundedRect;
+    [self.view addSubview:tf8];
+
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
