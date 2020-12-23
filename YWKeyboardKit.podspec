@@ -47,27 +47,26 @@ ns.source_files = 'YWKeyboardKit/Classes/KeyboardButton/*.{h,m}'
 ns.dependency 'YWKeyboardKit/TurtleBezierPath'
 end
 
-
-
 s.subspec 'LicensePlate' do |ns|
 ns.source_files = 'YWKeyboardKit/Classes/LicensePlate/*.{h,m}'
-
 ns.dependency 'YWKeyboardKit/KeyboardButton'
-
 ns.resource_bundles = {
 'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
 }
 end
 
+
+
 s.subspec 'InputToolbar' do |ns|
 ns.source_files = 'YWKeyboardKit/Classes/InputToolbar/*.{h,m}'
 end
 
+
+
+
 s.subspec 'IdCard' do |ns|
 ns.source_files = 'YWKeyboardKit/Classes/IdCard/*.{h,m}'
-
 ns.dependency 'YWKeyboardKit/KeyboardButton'
-
 ns.resource_bundles = {
 'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
 }
@@ -75,9 +74,7 @@ end
 
 s.subspec 'NumPad' do |ns|
 ns.source_files = 'YWKeyboardKit/Classes/NumPad/*.{h,m}'
-
 ns.dependency 'YWKeyboardKit/KeyboardButton'
-
 ns.resource_bundles = {
 'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
 }
@@ -87,9 +84,7 @@ end
 
 s.subspec 'NumChar' do |ns|
 ns.source_files = 'YWKeyboardKit/Classes/NumChar/*.{h,m}'
-
 ns.dependency 'YWKeyboardKit/KeyboardButton'
-
 ns.resource_bundles = {
 'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
 }
