@@ -55,14 +55,9 @@ Pod::Spec.new do |s|
         }
     end
     
-    
-    
     s.subspec 'InputToolbar' do |ns|
         ns.source_files = 'YWKeyboardKit/Classes/InputToolbar/*.{h,m}'
     end
-    
-    
-    
     
     s.subspec 'IdCard' do |ns|
         ns.source_files = 'YWKeyboardKit/Classes/IdCard/*.{h,m}'
@@ -80,10 +75,10 @@ Pod::Spec.new do |s|
         }
     end
     
-    s.subspec 'NumSpecChara' do |ns|
-        ns.source_files = 'YWKeyboardKit/Classes/NumSpecChara/*.{h,m}'
-        ns.dependency 'YWKeyboardKit/KeyboardButton'
-        ns.resource_bundles = {
+    s.subspec 'NumSpecChara' do |nc|
+        nc.source_files = 'YWKeyboardKit/Classes/NumSpecChara/*'
+        nc.dependency 'YWKeyboardKit/KeyboardButton'
+        nc.resource_bundles = {
             'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
         }
     end
