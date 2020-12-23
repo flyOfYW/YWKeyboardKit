@@ -82,8 +82,8 @@ end
 
 
 
-s.subspec 'NumChar' do |ns|
-ns.source_files = 'YWKeyboardKit/Classes/NumChar/*.{h,m}'
+s.subspec 'NumSpecChara' do |ns|
+ns.source_files = 'YWKeyboardKit/Classes/NumSpecChara/*.{h,m}'
 ns.dependency 'YWKeyboardKit/KeyboardButton'
 ns.resource_bundles = {
 'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']

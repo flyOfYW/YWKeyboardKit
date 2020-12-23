@@ -79,8 +79,8 @@
       }
     },
     {
-      "name": "NumChar",
-      "source_files": "YWKeyboardKit/Classes/NumChar/*.{h,m}",
+      "name": "NumSpecChara",
+      "source_files": "YWKeyboardKit/Classes/NumSpecChara/*.{h,m}",
       "dependencies": {
         "YWKeyboardKit/KeyboardButton": [
 

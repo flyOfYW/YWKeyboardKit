@@ -16,8 +16,8 @@
 #import "YWTipUpView.h"
 #import "YWLicensePlateView.h"
 #import "YWProvinceLicensePlatePrefixView.h"
-#import "YWNumCharKeyboardView.h"
 #import "YWNumPadKeyboardView.h"
+#import "YWNumCharKeyboardView.h"
 #import "TurtleBezierPath.h"
 
 FOUNDATION_EXPORT double YWKeyboardKitVersionNumber;
