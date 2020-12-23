@@ -1,5 +1,5 @@
 //
-//  YWNumCharKeyboardView.h
+//  YWNumSpencCharaKeyboardView.h
 //  Pods-YWKeyboardKit_Example
 //
 //  Created by yaowei on 2020/12/23.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YWNumCharKeyboardView : UIInputView
+@interface YWNumSpencCharaKeyboardView : UIInputView
 @property (nonatomic, weak, readonly) id<UITextInput> textInput;
 /**是否需要按下效果*/
 @property (nonatomic, assign        ) BOOL downEffect;

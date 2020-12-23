@@ -13,7 +13,7 @@
 
 #import <YWKeyboardKit/YWIdCardKeyboardView.h>
 #import <YWKeyboardKit/YWNumPadKeyboardView.h>
-#import <YWKeyboardKit/YWNumCharKeyboardView.h>
+#import <YWKeyboardKit/YWNumSpencCharaKeyboardView.h>
 
 
 @interface YWViewController ()
@@ -121,7 +121,7 @@
     UITextField *tf9 = [[UITextField alloc] initWithFrame:CGRectMake(20, 300, 160  , 34)];
     tf9.adjustsFontSizeToFitWidth = YES;
     tf9.placeholder = @"abc和特殊符号";
-    YWNumCharKeyboardView * numCharKeyboardView = [YWNumCharKeyboardView getCharNumKeyboardView:tf9];
+    YWNumSpencCharaKeyboardView * numCharKeyboardView = [YWNumSpencCharaKeyboardView getCharNumKeyboardView:tf9];
     tf9.inputView = numCharKeyboardView;
     tf9.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:tf9];

@@ -7,38 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0520A878631F23D8662005095BA074CD /* YWKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B01DE00163F40E51314726818BA9D00A /* YWKeyboardButton.m */; };
-		14EC38B823894EE837306D181862746A /* YWIdCardKeyboardView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED29CEBE31520542579564A37137588A /* YWIdCardKeyboardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2546BB35FD469E2FBDC684A1B80A53D3 /* YWNumPadKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E9BBD816D9771B779DA7FE266AB69 /* YWNumPadKeyboardView.m */; };
+		002E35CAAEDFBF15592347FAC938A893 /* YWInputToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 30BAC5A6546FDFCF1E150794ECAD14D4 /* YWInputToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0E2B683F4E29B5F8D2C1415ADF13400F /* YWProvinceLicensePlatePrefixView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD32822748B3FD0612C39041754CF71 /* YWProvinceLicensePlatePrefixView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		202BA9420886FCE9A47C8BF3FEE30A08 /* TurtleBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 098A04EA4A0B32BD6E755AEF0FFD038B /* TurtleBezierPath.m */; };
+		206DC0A9E616458985D5650283A6EC75 /* TurtleBezierPath.h in Headers */ = {isa = PBXBuildFile; fileRef = F0A71091E00B4693D0B7BF946A87B0F0 /* TurtleBezierPath.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29A5399A381F75664981FB3BBE3A6E5F /* YWKeyBoardAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7915596BCBC4E34036A264E709CC7987 /* YWKeyBoardAsset.xcassets */; };
 		2B279120D60B383963630E8E3AD30420 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		2C6D4D35B6889A2AAA2AE7AEE30113DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		3756977D79AAD322651FED3D38690445 /* YWNumCharKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80ABE0B34435EB2FB33D58C1773A2157 /* YWNumCharKeyboardView.m */; };
-		37B6903DE9D5085BB8D12E858304B422 /* YWTipUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA54E68318E9804FD10870250495A8C2 /* YWTipUpView.m */; };
+		315BA447619BAA20AC1F6042C5167D49 /* YWNumPadKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E9BBD816D9771B779DA7FE266AB69 /* YWNumPadKeyboardView.m */; };
 		3DE7A00BA55496C69F4AEE0B717BCADF /* YWKeyBoardAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7915596BCBC4E34036A264E709CC7987 /* YWKeyBoardAsset.xcassets */; };
-		5051731278A87C0CF1D1EC7CD5A48C7B /* TurtleBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 098A04EA4A0B32BD6E755AEF0FFD038B /* TurtleBezierPath.m */; };
-		565A47812EA1AB570613E6A62E2C8BDC /* YWKeyboardButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F976C749BFF0AAFB9B5FAD4204163C1 /* YWKeyboardButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45316EEA474DA3FE223FA10C0DC848FF /* YWKeyboardButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F976C749BFF0AAFB9B5FAD4204163C1 /* YWKeyboardButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49A141AC0FBFD68CA4B790F1370FDC87 /* YWProvinceLicensePlatePrefixView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6CD535749EDC9532D1F827F5669FA /* YWProvinceLicensePlatePrefixView.m */; };
+		4E9C9D29995EDAB587ABD47B1D94FD05 /* YWIdCardKeyboardView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED29CEBE31520542579564A37137588A /* YWIdCardKeyboardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E9F7066F11793014CE39F2EF8D78E95 /* YWNumPadKeyboardView.h in Headers */ = {isa = PBXBuildFile; fileRef = FDAD74F4A3630E238C58856BEEE243BB /* YWNumPadKeyboardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		532D600A7EEF78AA7064E249A7B9D3E8 /* YWInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDBA2967AE955FE206FC06633E82930 /* YWInputToolbar.m */; };
 		5983800D0B6BF21F6CFF3870FD3D21A1 /* Pods-YWKeyboardKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B1882908F181341A80C81F878A925 /* Pods-YWKeyboardKit_Example-dummy.m */; };
+		5F0F4837CC28A1861194C493B8CA4439 /* YWTipUpView.h in Headers */ = {isa = PBXBuildFile; fileRef = D56D9218B3881A28AFBD589CB478CB94 /* YWTipUpView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		601F1A15322FDF78047C4961AC963FA6 /* YWKeyBoardAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7915596BCBC4E34036A264E709CC7987 /* YWKeyBoardAsset.xcassets */; };
 		737761B05BFA675F5E0C19A31A4D6334 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		75229443FE229BDD064F21A8F048A70D /* YWKeyboardKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5099D17C29665FFB5278ADE71DF166C0 /* YWKeyboardKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		759A31882C3A3E5C2F8256D6B0C734E9 /* Pods-YWKeyboardKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 477C9F5D78B81D4059A51DACF57C6A32 /* Pods-YWKeyboardKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7AADC27AFA5E541CAF19AEEA7D630F74 /* YWTipUpView.h in Headers */ = {isa = PBXBuildFile; fileRef = D56D9218B3881A28AFBD589CB478CB94 /* YWTipUpView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7C17B54F9001A90689FE1BE8D1B277E1 /* YWLicensePlateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F389BB4BFA203F607CC9677D621D7A3 /* YWLicensePlateView.m */; };
 		84EFD539452EC17057DA4C6A040C9E4A /* Pods-YWKeyboardKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B8E01571D29C9D27B42A736A0EB6EA /* Pods-YWKeyboardKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		86C72181E29DD890773644702E2BEC81 /* TurtleBezierPath.h in Headers */ = {isa = PBXBuildFile; fileRef = F0A71091E00B4693D0B7BF946A87B0F0 /* TurtleBezierPath.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8CD95506E2C181796D9D8248850E566D /* YWIdCardKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4540628CB9E0BF604F4B36498F191A53 /* YWIdCardKeyboardView.m */; };
+		9BF977B420AEE986E6414D2B865C1448 /* YWKeyboardKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 97219E9C61A4AD68C98BB4506027FF52 /* YWKeyboardKit-dummy.m */; };
+		A1508A49346563DDAB811E3D1C5CD87F /* YWKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B01DE00163F40E51314726818BA9D00A /* YWKeyboardButton.m */; };
+		B3CFF9D11E4E1ACAF401B5A8C201343A /* YWTipUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA54E68318E9804FD10870250495A8C2 /* YWTipUpView.m */; };
 		B43518AEEC2918429BACDBE99A597A39 /* YWKeyboardKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CBCC1F553CEF14131BC02C7140989200 /* YWKeyboardKit.bundle */; };
 		BD0D90D13E7EDB32E7E4081DE652BF36 /* Pods-YWKeyboardKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 70923E4C9E4B8589400E0D5EC806C6F0 /* Pods-YWKeyboardKit_Tests-dummy.m */; };
-		BE4E8E5811A5C269EE95452294349CBC /* YWLicensePlateView.h in Headers */ = {isa = PBXBuildFile; fileRef = 45B859CD14CD18758DB7FFD6A76C960E /* YWLicensePlateView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0DA059C52629D3C098E1C9BD747569C /* YWKeyBoardAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7915596BCBC4E34036A264E709CC7987 /* YWKeyBoardAsset.xcassets */; };
-		CBCF322F59197EDA109ED7990251D5A6 /* YWProvinceLicensePlatePrefixView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD32822748B3FD0612C39041754CF71 /* YWProvinceLicensePlatePrefixView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CED01AA276EF1747EB17388F43297B00 /* YWKeyboardKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 97219E9C61A4AD68C98BB4506027FF52 /* YWKeyboardKit-dummy.m */; };
-		DB0ABF315A8258988777BE796EB43691 /* YWProvinceLicensePlatePrefixView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6CD535749EDC9532D1F827F5669FA /* YWProvinceLicensePlatePrefixView.m */; };
-		DB430300BDFA30D9ABD0EDCB4F006DE2 /* YWInputToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 30BAC5A6546FDFCF1E150794ECAD14D4 /* YWInputToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E5A7B7B89B2915FFC17B0487B296C55E /* YWNumCharKeyboardView.h in Headers */ = {isa = PBXBuildFile; fileRef = A57D1B5D2F7F7DFF94B71DF56DF62ED3 /* YWNumCharKeyboardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F4A8A00DE20301672B50E8F38825DACC /* YWNumPadKeyboardView.h in Headers */ = {isa = PBXBuildFile; fileRef = FDAD74F4A3630E238C58856BEEE243BB /* YWNumPadKeyboardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FBF1257A61C05C3E94211A6DF0C6735B /* YWInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDBA2967AE955FE206FC06633E82930 /* YWInputToolbar.m */; };
+		DBC5ABAD01CE001F0B815E4B3101255F /* YWNumSpencCharaKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD1177A1564F69160CC3B53C684D417 /* YWNumSpencCharaKeyboardView.m */; };
+		DC57D469C92B89718102B00429EBDA9A /* YWLicensePlateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F389BB4BFA203F607CC9677D621D7A3 /* YWLicensePlateView.m */; };
+		E5A282E5CD32F8DF49AC6B3257012C97 /* YWNumSpencCharaKeyboardView.h in Headers */ = {isa = PBXBuildFile; fileRef = F3035A7D4E014E8CC1CBB48600AF712C /* YWNumSpencCharaKeyboardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8CF5E2B0189A78506B14E3221CB160C /* YWLicensePlateView.h in Headers */ = {isa = PBXBuildFile; fileRef = 45B859CD14CD18758DB7FFD6A76C960E /* YWLicensePlateView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED4FB6AC0EE9C5D7377A805A662592D2 /* YWIdCardKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4540628CB9E0BF604F4B36498F191A53 /* YWIdCardKeyboardView.m */; };
+		FD96B0680C3940DA0652431CA69B3F10 /* YWKeyboardKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5099D17C29665FFB5278ADE71DF166C0 /* YWKeyboardKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +90,7 @@
 		055C419F72C581996A2FC8A50944B61C /* YWKeyboardKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YWKeyboardKit.release.xcconfig; sourceTree = "<group>"; };
 		098A04EA4A0B32BD6E755AEF0FFD038B /* TurtleBezierPath.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TurtleBezierPath.m; path = YWKeyboardKit/Classes/TurtleBezierPath/TurtleBezierPath.m; sourceTree = "<group>"; };
 		0CAF176AB954659F8F4FA82FA3E94214 /* Pods-YWKeyboardKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YWKeyboardKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		0DD1177A1564F69160CC3B53C684D417 /* YWNumSpencCharaKeyboardView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWNumSpencCharaKeyboardView.m; path = YWKeyboardKit/Classes/NumSpecChara/YWNumSpencCharaKeyboardView.m; sourceTree = "<group>"; };
 		1CAB9947D74085ACA27B937B1758A0C2 /* YWKeyboardKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YWKeyboardKit.framework; path = YWKeyboardKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2049D1E683C9CDC0293110C95607BAC7 /* ResourceBundle-YWKeyboardKit-YWKeyboardKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-YWKeyboardKit-YWKeyboardKit-Info.plist"; sourceTree = "<group>"; };
 		216E375C62B6AF0BAB2B1FCF065CC8F8 /* Pods-YWKeyboardKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YWKeyboardKit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,12 +117,10 @@
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7915596BCBC4E34036A264E709CC7987 /* YWKeyBoardAsset.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = YWKeyBoardAsset.xcassets; path = YWKeyboardKit/Assets/YWKeyBoardAsset.xcassets; sourceTree = "<group>"; };
 		7DD32822748B3FD0612C39041754CF71 /* YWProvinceLicensePlatePrefixView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWProvinceLicensePlatePrefixView.h; path = YWKeyboardKit/Classes/LicensePlate/YWProvinceLicensePlatePrefixView.h; sourceTree = "<group>"; };
-		80ABE0B34435EB2FB33D58C1773A2157 /* YWNumCharKeyboardView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWNumCharKeyboardView.m; path = YWKeyboardKit/Classes/NumSpecChara/YWNumCharKeyboardView.m; sourceTree = "<group>"; };
 		870BCC5B7F5D5070DAC6FD19B404EEAF /* Pods-YWKeyboardKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YWKeyboardKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8D2B1882908F181341A80C81F878A925 /* Pods-YWKeyboardKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YWKeyboardKit_Example-dummy.m"; sourceTree = "<group>"; };
 		97219E9C61A4AD68C98BB4506027FF52 /* YWKeyboardKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YWKeyboardKit-dummy.m"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A57D1B5D2F7F7DFF94B71DF56DF62ED3 /* YWNumCharKeyboardView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWNumCharKeyboardView.h; path = YWKeyboardKit/Classes/NumSpecChara/YWNumCharKeyboardView.h; sourceTree = "<group>"; };
 		AA54E68318E9804FD10870250495A8C2 /* YWTipUpView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWTipUpView.m; path = YWKeyboardKit/Classes/KeyboardButton/YWTipUpView.m; sourceTree = "<group>"; };
 		B01DE00163F40E51314726818BA9D00A /* YWKeyboardButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YWKeyboardButton.m; path = YWKeyboardKit/Classes/KeyboardButton/YWKeyboardButton.m; sourceTree = "<group>"; };
 		B636E034D9B8D5D2742799E39EF781CD /* Pods_YWKeyboardKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_YWKeyboardKit_Tests.framework; path = "Pods-YWKeyboardKit_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +136,7 @@
 		EF156EA0CE8C584D9BE15B5DC3948FFD /* Pods-YWKeyboardKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YWKeyboardKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		F0A71091E00B4693D0B7BF946A87B0F0 /* TurtleBezierPath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TurtleBezierPath.h; path = YWKeyboardKit/Classes/TurtleBezierPath/TurtleBezierPath.h; sourceTree = "<group>"; };
 		F0DC075D411D98052A0D78D68865CF3D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		F3035A7D4E014E8CC1CBB48600AF712C /* YWNumSpencCharaKeyboardView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWNumSpencCharaKeyboardView.h; path = YWKeyboardKit/Classes/NumSpecChara/YWNumSpencCharaKeyboardView.h; sourceTree = "<group>"; };
 		FD1F4BD8B1B399912D6EB72BAC0496E4 /* Pods-YWKeyboardKit_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YWKeyboardKit_Example-Info.plist"; sourceTree = "<group>"; };
 		FDAD74F4A3630E238C58856BEEE243BB /* YWNumPadKeyboardView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YWNumPadKeyboardView.h; path = YWKeyboardKit/Classes/NumPad/YWNumPadKeyboardView.h; sourceTree = "<group>"; };
 		FE06158830391B435B65BCB0559D5143 /* Pods-YWKeyboardKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YWKeyboardKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +257,15 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		580A749788714A9315A325006E083B65 /* NumSpecChara */ = {
+			isa = PBXGroup;
+			children = (
+				F3035A7D4E014E8CC1CBB48600AF712C /* YWNumSpencCharaKeyboardView.h */,
+				0DD1177A1564F69160CC3B53C684D417 /* YWNumSpencCharaKeyboardView.m */,
+			);
+			name = NumSpecChara;
+			sourceTree = "<group>";
+		};
 		58ADD0EE058CFBC34A639ED13698AF73 /* YWKeyboardKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,7 +274,7 @@
 				93FEE57BFAD466755586F9632902B66D /* KeyboardButton */,
 				89E364DB6AE73B6BD57CEDC58C148BF8 /* LicensePlate */,
 				4A28A12C1D3BAE242B474DFFEDEDECDD /* NumPad */,
-				D922ACBB25ADB6E18222AE5DDE902F75 /* NumSpecChara */,
+				580A749788714A9315A325006E083B65 /* NumSpecChara */,
 				DEB6B386CA2AD1CB69E77F4D1D586022 /* Pod */,
 				FA6B0CD10F5B10FBF6DC727F2FF5CED4 /* Support Files */,
 				20419EA2C4CA80F80B100C1FDABD1EBA /* TurtleBezierPath */,
@@ -348,15 +357,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D922ACBB25ADB6E18222AE5DDE902F75 /* NumSpecChara */ = {
-			isa = PBXGroup;
-			children = (
-				A57D1B5D2F7F7DFF94B71DF56DF62ED3 /* YWNumCharKeyboardView.h */,
-				80ABE0B34435EB2FB33D58C1773A2157 /* YWNumCharKeyboardView.m */,
-			);
-			name = NumSpecChara;
-			sourceTree = "<group>";
-		};
 		DEB6B386CA2AD1CB69E77F4D1D586022 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,28 +414,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A2D6A2FE676ADBA0E2C1B537DF2BC61E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86C72181E29DD890773644702E2BEC81 /* TurtleBezierPath.h in Headers */,
-				14EC38B823894EE837306D181862746A /* YWIdCardKeyboardView.h in Headers */,
-				DB430300BDFA30D9ABD0EDCB4F006DE2 /* YWInputToolbar.h in Headers */,
-				565A47812EA1AB570613E6A62E2C8BDC /* YWKeyboardButton.h in Headers */,
-				75229443FE229BDD064F21A8F048A70D /* YWKeyboardKit-umbrella.h in Headers */,
-				BE4E8E5811A5C269EE95452294349CBC /* YWLicensePlateView.h in Headers */,
-				E5A7B7B89B2915FFC17B0487B296C55E /* YWNumCharKeyboardView.h in Headers */,
-				F4A8A00DE20301672B50E8F38825DACC /* YWNumPadKeyboardView.h in Headers */,
-				CBCF322F59197EDA109ED7990251D5A6 /* YWProvinceLicensePlatePrefixView.h in Headers */,
-				7AADC27AFA5E541CAF19AEEA7D630F74 /* YWTipUpView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C4CFD852F108B330267F5EC1E50E81AA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				759A31882C3A3E5C2F8256D6B0C734E9 /* Pods-YWKeyboardKit_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EF12FD56003428C3E1680A1DE41365 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				206DC0A9E616458985D5650283A6EC75 /* TurtleBezierPath.h in Headers */,
+				4E9C9D29995EDAB587ABD47B1D94FD05 /* YWIdCardKeyboardView.h in Headers */,
+				002E35CAAEDFBF15592347FAC938A893 /* YWInputToolbar.h in Headers */,
+				45316EEA474DA3FE223FA10C0DC848FF /* YWKeyboardButton.h in Headers */,
+				FD96B0680C3940DA0652431CA69B3F10 /* YWKeyboardKit-umbrella.h in Headers */,
+				E8CF5E2B0189A78506B14E3221CB160C /* YWLicensePlateView.h in Headers */,
+				4E9F7066F11793014CE39F2EF8D78E95 /* YWNumPadKeyboardView.h in Headers */,
+				E5A282E5CD32F8DF49AC6B3257012C97 /* YWNumSpencCharaKeyboardView.h in Headers */,
+				0E2B683F4E29B5F8D2C1415ADF13400F /* YWProvinceLicensePlatePrefixView.h in Headers */,
+				5F0F4837CC28A1861194C493B8CA4439 /* YWTipUpView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,8 +482,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF757304E55909C461B6E976FF0EA81B /* Build configuration list for PBXNativeTarget "YWKeyboardKit" */;
 			buildPhases = (
-				A2D6A2FE676ADBA0E2C1B537DF2BC61E /* Headers */,
-				41AC030BABB713EF2921218AB862756B /* Sources */,
+				F3EF12FD56003428C3E1680A1DE41365 /* Headers */,
+				2A5C9ED61E8D0EC4A219CC6D58D92E91 /* Sources */,
 				23D9EA1607318EF5846C0892AA4ECD70 /* Frameworks */,
 				2427047A4E077868F3987D26E37B1CB9 /* Resources */,
 			);
@@ -628,20 +628,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		41AC030BABB713EF2921218AB862756B /* Sources */ = {
+		2A5C9ED61E8D0EC4A219CC6D58D92E91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5051731278A87C0CF1D1EC7CD5A48C7B /* TurtleBezierPath.m in Sources */,
-				8CD95506E2C181796D9D8248850E566D /* YWIdCardKeyboardView.m in Sources */,
-				FBF1257A61C05C3E94211A6DF0C6735B /* YWInputToolbar.m in Sources */,
-				0520A878631F23D8662005095BA074CD /* YWKeyboardButton.m in Sources */,
-				CED01AA276EF1747EB17388F43297B00 /* YWKeyboardKit-dummy.m in Sources */,
-				7C17B54F9001A90689FE1BE8D1B277E1 /* YWLicensePlateView.m in Sources */,
-				3756977D79AAD322651FED3D38690445 /* YWNumCharKeyboardView.m in Sources */,
-				2546BB35FD469E2FBDC684A1B80A53D3 /* YWNumPadKeyboardView.m in Sources */,
-				DB0ABF315A8258988777BE796EB43691 /* YWProvinceLicensePlatePrefixView.m in Sources */,
-				37B6903DE9D5085BB8D12E858304B422 /* YWTipUpView.m in Sources */,
+				202BA9420886FCE9A47C8BF3FEE30A08 /* TurtleBezierPath.m in Sources */,
+				ED4FB6AC0EE9C5D7377A805A662592D2 /* YWIdCardKeyboardView.m in Sources */,
+				532D600A7EEF78AA7064E249A7B9D3E8 /* YWInputToolbar.m in Sources */,
+				A1508A49346563DDAB811E3D1C5CD87F /* YWKeyboardButton.m in Sources */,
+				9BF977B420AEE986E6414D2B865C1448 /* YWKeyboardKit-dummy.m in Sources */,
+				DC57D469C92B89718102B00429EBDA9A /* YWLicensePlateView.m in Sources */,
+				315BA447619BAA20AC1F6042C5167D49 /* YWNumPadKeyboardView.m in Sources */,
+				DBC5ABAD01CE001F0B815E4B3101255F /* YWNumSpencCharaKeyboardView.m in Sources */,
+				49A141AC0FBFD68CA4B790F1370FDC87 /* YWProvinceLicensePlatePrefixView.m in Sources */,
+				B3CFF9D11E4E1ACAF401B5A8C201343A /* YWTipUpView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,14 +1,14 @@
 //
-//  YWNumCharKeyboardView.m
+//  YWNumSpencCharaKeyboardView.m
 //  Pods-YWKeyboardKit_Example
 //
 //  Created by yaowei on 2020/12/23.
 //
 
-#import "YWNumCharKeyboardView.h"
+#import "YWNumSpencCharaKeyboardView.h"
 #import <YWKeyboardKit/YWKeyboardButton.h>
 
-@interface YWNumCharKeyboardView ()<YWKeyboardButtonDelegate>
+@interface YWNumSpencCharaKeyboardView ()<YWKeyboardButtonDelegate>
 {
     CGFloat _itemWidth;
     NSInteger _cellType;
@@ -35,7 +35,7 @@
 
 @end
 
-@implementation YWNumCharKeyboardView
+@implementation YWNumSpencCharaKeyboardView
 
 /// 按下的回调
 /// @param button 当前操作对象
@@ -95,10 +95,10 @@
 }
 
 + (instancetype)getDefalutNumCharKeyboardView:(id<UITextInput>)textInput{
-    return [[YWNumCharKeyboardView alloc] initWithFrame:CGRectZero inputViewStyle:UIInputViewStyleKeyboard textInput:textInput cellType:0];
+    return [[YWNumSpencCharaKeyboardView alloc] initWithFrame:CGRectZero inputViewStyle:UIInputViewStyleKeyboard textInput:textInput cellType:0];
 }
 + (instancetype)getCharNumKeyboardView:(id<UITextInput>)textInput{
-    return [[YWNumCharKeyboardView alloc] initWithFrame:CGRectZero inputViewStyle:UIInputViewStyleKeyboard textInput:textInput cellType:1];
+    return [[YWNumSpencCharaKeyboardView alloc] initWithFrame:CGRectZero inputViewStyle:UIInputViewStyleKeyboard textInput:textInput cellType:1];
 }
 - (instancetype)initWithFrame:(CGRect)frame
                inputViewStyle:(UIInputViewStyle)inputViewStyle

@@ -1,24 +1,24 @@
 PODS:
-  - YWKeyboardKit (0.1.5):
-    - YWKeyboardKit/IdCard (= 0.1.5)
-    - YWKeyboardKit/InputToolbar (= 0.1.5)
-    - YWKeyboardKit/KeyboardButton (= 0.1.5)
-    - YWKeyboardKit/LicensePlate (= 0.1.5)
-    - YWKeyboardKit/NumPad (= 0.1.5)
-    - YWKeyboardKit/NumSpecChara (= 0.1.5)
-    - YWKeyboardKit/TurtleBezierPath (= 0.1.5)
-  - YWKeyboardKit/IdCard (0.1.5):
+  - YWKeyboardKit (0.1.6):
+    - YWKeyboardKit/IdCard (= 0.1.6)
+    - YWKeyboardKit/InputToolbar (= 0.1.6)
+    - YWKeyboardKit/KeyboardButton (= 0.1.6)
+    - YWKeyboardKit/LicensePlate (= 0.1.6)
+    - YWKeyboardKit/NumPad (= 0.1.6)
+    - YWKeyboardKit/NumSpecChara (= 0.1.6)
+    - YWKeyboardKit/TurtleBezierPath (= 0.1.6)
+  - YWKeyboardKit/IdCard (0.1.6):
     - YWKeyboardKit/KeyboardButton
-  - YWKeyboardKit/InputToolbar (0.1.5)
-  - YWKeyboardKit/KeyboardButton (0.1.5):
+  - YWKeyboardKit/InputToolbar (0.1.6)
+  - YWKeyboardKit/KeyboardButton (0.1.6):
     - YWKeyboardKit/TurtleBezierPath
-  - YWKeyboardKit/LicensePlate (0.1.5):
+  - YWKeyboardKit/LicensePlate (0.1.6):
     - YWKeyboardKit/KeyboardButton
-  - YWKeyboardKit/NumPad (0.1.5):
+  - YWKeyboardKit/NumPad (0.1.6):
     - YWKeyboardKit/KeyboardButton
-  - YWKeyboardKit/NumSpecChara (0.1.5):
+  - YWKeyboardKit/NumSpecChara (0.1.6):
     - YWKeyboardKit/KeyboardButton
-  - YWKeyboardKit/TurtleBezierPath (0.1.5)
+  - YWKeyboardKit/TurtleBezierPath (0.1.6)
 
 DEPENDENCIES:
   - YWKeyboardKit (from `../`)
@@ -28,7 +28,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  YWKeyboardKit: 8d77c6758de9488e5b126d195176c81e922bcb25
+  YWKeyboardKit: 15489be80c626b5e4ea551c6f40e4f23861dd6d4
 
 PODFILE CHECKSUM: 33d8266cb882b1986fd31453427bfa69bfb4315c
 
