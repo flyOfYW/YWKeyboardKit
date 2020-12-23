@@ -60,19 +60,26 @@
 - (BOOL)interceptorTouchUpInside:(YWKeyboardButton *)button{
     if (button.tag == 900) {//ABC
         [self showNumPinView];
+        [self.timer invalidate];
+        self.timer = nil;
         return NO;
     }
     if (button.tag == 901){//中
         [self showProviceCodeView];
+        [self.timer invalidate];
+        self.timer = nil;
         return NO;
     }
     return YES;
 }
 - (BOOL)needDrawAmplification:(YWKeyboardButton *)button{
-    if (button.tag == 900) {
+    if (button.tag == 900) {//ABC
         return NO;
     }
-    if (button.tag == 902) {
+    if (button.tag == 901){//中
+        return NO;
+    }
+    if (button.tag == 902) {//delegate
         return NO;
     }
     return YES;
@@ -111,13 +118,14 @@
     if (size4.width == mainSize.width && size4.height == mainSize.height) {//4.0
         font = [UIFont systemFontOfSize:12];
     }
+    CGFloat fixedHeight = height + top + top;
     
     for (NSString *kText in self.proviceCodeList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
         YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space) + leftX;
-        btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width, height);
+        btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
         if (i == 30){//abc
             btn.tag = 900;
             btn.keyColor = self.deleteColor;
@@ -158,42 +166,43 @@
         v;
     })];
     
+    CGFloat fixedHeight = height + top + top;
+
     for (NSString *kText in self.numPinList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
         YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         if (i < 20) {
             CGFloat currentX = index * (width + space) + leftX;
-            btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width, height);
+            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
         }else if (i < 29){
             CGFloat currentX = index * (width + space) + (width/2 + 6);
-            btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width, height);
-        }else if (i < 30){
+            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
+        }else if (i < 30){//切换
             CGFloat currentLeft = 1 * (width + space) + (width/2 + 6);//z的左距离
             CGFloat currentW = currentLeft - 5 - 13;
             CGFloat currentX = 0 * (width + space) + leftX;
-            btn.frame = CGRectMake(currentX, top + (height + top + top) * 3, currentW, height);
+            btn.frame = CGRectMake(currentX, top + fixedHeight * 3, currentW, height);
+            
+            btn.tag = 901;
+            btn.keyColor = self.deleteColor;
+            btn.delegate = self;
+
         }else if(i > 36){
             CGFloat currentZLeft = 1 * (width + space) + (width/2 + 6);//z的左距离
             CGFloat currentW = currentZLeft - 5 - 13;
             CGFloat currentLeft = 8 * (width + space) + (width/2 + 6) + 9;
-            btn.frame = CGRectMake(currentLeft, top + (height + top + top) * page, currentW, height);
-        }else{
-            CGFloat currentLeft = 1 * (width + space) + (width/2 + 6);
-            CGFloat currentX = index * (width + space) + currentLeft;
-            btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width, height);
-        }
-        
-        if (i == 29) {//中文切换
-            btn.tag = 901;
-            btn.keyColor = self.deleteColor;
-            btn.delegate = self;
-        }else if (i == 37){
+            btn.frame = CGRectMake(currentLeft, top + fixedHeight * page, currentW, height);
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.tag = 902;
             btn.keyColor = self.deleteColor;
             btn.delegate = self;
             [self addLongGesAction:btn];
+
+        }else{
+            CGFloat currentLeft = 1 * (width + space) + (width/2 + 6);
+            CGFloat currentX = index * (width + space) + currentLeft;
+            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
         }
         btn.input = kText;
         btn.textInput = _textInput;
@@ -296,5 +305,13 @@
         }
     }
     return _deleteColor;
+}
+
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    YWKeyboardButton *btn = [_proviceCodeView viewWithTag:902];
+    YWKeyboardButton *btn1 = [_numPinView viewWithTag:902];
+    btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
+    btn1.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
 }
 @end

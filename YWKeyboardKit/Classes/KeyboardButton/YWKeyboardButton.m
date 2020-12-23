@@ -15,6 +15,7 @@
     struct {
         unsigned inTouchUpInside : 1;
         unsigned amplification : 1;
+        unsigned touchDownForState : 1;
     } _delegateHas;
     
 }
@@ -43,6 +44,9 @@
 //手指按下按钮的事件
 - (void)handleTouchDown{
     [[UIDevice currentDevice] playInputClick];
+    if (_delegateHas.touchDownForState) {
+        [_delegate handleTouchDownForState:self];
+    }
     if ([self isDrawAmplification]) {//放大效果
         [self showInputView];
     }
@@ -53,7 +57,8 @@
         isContinue = [_delegate interceptorTouchUpInside:self];
     }
     if (!isContinue) return;
-    [self insertText:self.input];
+//    [self insertText:self.input];
+    [self insertText:[self getCurrentInputText]];
     if ([self isDrawAmplification]) {
         [self hideInputView];
     }
@@ -135,6 +140,7 @@
 }
 
 - (void)commonInit{
+    self.exclusiveTouch = YES;
     _drawAmplification = YES;
     if (@available(iOS 13.0, *)) {
         _keyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
@@ -236,10 +242,24 @@
     [self setTitle:input forState:UIControlStateDisabled];
     [self setTitle:input forState:UIControlStateSelected];
 }
+- (void)setInputSelected:(NSString *)inputSelected{
+    _inputSelected = inputSelected;
+    [self setTitle:inputSelected forState:UIControlStateSelected];
+}
 - (void)setDelegate:(id<YWKeyboardButtonDelegate>)delegate{
     _delegate = delegate;
     _delegateHas.inTouchUpInside = delegate && [delegate respondsToSelector:@selector(interceptorTouchUpInside:)];
     _delegateHas.amplification = delegate && [delegate respondsToSelector:@selector(needDrawAmplification:)];
+    _delegateHas.touchDownForState = delegate && [delegate respondsToSelector:@selector(handleTouchDownForState:)];
+}
+- (NSString *)getCurrentInputText{
+    if (!_inputSelected) {
+        return _input;
+    }
+    if (self.selected) {
+        return _inputSelected;
+    }
+    return _input;
 }
 - (BOOL)isDrawAmplification{
     if (_delegateHas.amplification) {
@@ -250,9 +270,7 @@
 }
 @end
 
-
-
-
+//MARK: ----- YWKeyboardDownButton ---------
 
 @interface YWKeyboardDownButton ()
 {
@@ -296,6 +314,7 @@
         isContinue = [_delegate interceptorTouchUpInside:self];
     }
     if (!isContinue) return;
+        
     [self insertText:self.input];
 
 }
@@ -381,6 +400,7 @@ replacementString:(NSString *)string
 }
 
 - (void)commonInit{
+    self.exclusiveTouch = YES;
     _drawShadow = YES;
     if (@available(iOS 13.0, *)) {
         _keyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {

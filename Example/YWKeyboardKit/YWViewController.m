@@ -13,6 +13,7 @@
 
 #import <YWKeyboardKit/YWIdCardKeyboardView.h>
 #import <YWKeyboardKit/YWNumPadKeyboardView.h>
+#import <YWKeyboardKit/YWNumCharKeyboardView.h>
 
 
 @interface YWViewController ()
@@ -101,7 +102,7 @@
 
     UITextField *tf7 = [[UITextField alloc] initWithFrame:CGRectMake(20, 260, 160   , 34)];
     tf7.adjustsFontSizeToFitWidth = YES;
-    tf7.placeholder = @"纯数字键盘带小数点";
+    tf7.placeholder = @"纯数字键盘";
     YWNumPadKeyboardView * numPadKeyboardView2 = [YWNumPadKeyboardView getNumKeyboardDividerView:tf7];
     tf7.inputView = numPadKeyboardView2;
     tf7.borderStyle = UITextBorderStyleRoundedRect;
@@ -116,8 +117,16 @@
     tf8.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:tf8];
 
-}
+    
+    UITextField *tf9 = [[UITextField alloc] initWithFrame:CGRectMake(20, 300, 160  , 34)];
+    tf9.adjustsFontSizeToFitWidth = YES;
+    tf9.placeholder = @"abc和特殊符号";
+    YWNumCharKeyboardView * numCharKeyboardView = [YWNumCharKeyboardView getCharNumKeyboardView:tf9];
+    tf9.inputView = numCharKeyboardView;
+    tf9.borderStyle = UITextBorderStyleRoundedRect;
+    [self.view addSubview:tf9];
 
+}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if (textField.tag == 300) {
         textField.text = string;

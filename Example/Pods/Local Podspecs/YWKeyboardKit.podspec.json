@@ -77,6 +77,20 @@
           "YWKeyboardKit/Assets/*.xcassets"
         ]
       }
+    },
+    {
+      "name": "NumChar",
+      "source_files": "YWKeyboardKit/Classes/NumChar/*.{h,m}",
+      "dependencies": {
+        "YWKeyboardKit/KeyboardButton": [
+
+        ]
+      },
+      "resource_bundles": {
+        "YWKeyboardKit": [
+          "YWKeyboardKit/Assets/*.xcassets"
+        ]
+      }
     }
   ]
 }

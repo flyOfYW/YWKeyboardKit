@@ -4,6 +4,7 @@ PODS:
     - YWKeyboardKit/InputToolbar (= 0.1.5)
     - YWKeyboardKit/KeyboardButton (= 0.1.5)
     - YWKeyboardKit/LicensePlate (= 0.1.5)
+    - YWKeyboardKit/NumChar (= 0.1.5)
     - YWKeyboardKit/NumPad (= 0.1.5)
     - YWKeyboardKit/TurtleBezierPath (= 0.1.5)
   - YWKeyboardKit/IdCard (0.1.5):
@@ -12,6 +13,8 @@ PODS:
   - YWKeyboardKit/KeyboardButton (0.1.5):
     - YWKeyboardKit/TurtleBezierPath
   - YWKeyboardKit/LicensePlate (0.1.5):
+    - YWKeyboardKit/KeyboardButton
+  - YWKeyboardKit/NumChar (0.1.5):
     - YWKeyboardKit/KeyboardButton
   - YWKeyboardKit/NumPad (0.1.5):
     - YWKeyboardKit/KeyboardButton
@@ -25,8 +28,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  YWKeyboardKit: 6e8c7eb2c5b076cebd01a54360fd696995f12503
+  YWKeyboardKit: 01d1ea26c15ba2a70709690606b9d4c18e879c9d
 
-PODFILE CHECKSUM: 3460ca4dc3c84d6cb081da0e7d3560287462faa7
+PODFILE CHECKSUM: 1e0a18bad2d496a2a065cabeb40a15e25a3c9484
 
 COCOAPODS: 1.10.0

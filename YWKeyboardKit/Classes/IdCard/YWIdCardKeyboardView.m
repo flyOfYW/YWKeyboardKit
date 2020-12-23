@@ -75,6 +75,7 @@
         CGFloat currentX = index * (width + space) + leftX;
         btn.frame = CGRectMake(currentX, top + (height + top) * page, width, height);
         if ([kText isEqual:@""]) {
+            btn.tag = 902;
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.keyColor = self.deleteColor;
             [self idcard_addLongGesAction:btn];
@@ -105,6 +106,7 @@
         btn.frame = CGRectMake(currentX, top + (height + space) * page, width, height);
         btn.drawShadow = NO;
         if ([kText isEqual:@""]) {
+            btn.tag = 902;
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.keyColor = self.deleteColor;
             [self idcard_addLongGesAction:btn];
@@ -221,5 +223,11 @@
         }
     }
     return _deleteColor;
+}
+
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    YWKeyboardButton *btn = [self viewWithTag:902];
+    btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
 }
 @end

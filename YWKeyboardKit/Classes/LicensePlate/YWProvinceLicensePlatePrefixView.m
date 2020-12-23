@@ -62,13 +62,14 @@
         _proviceCodeView = v;
         v;
     })];
-    
+    CGFloat fixedHeight = height + top + top;
+
     for (NSString *kText in self.proviceCodeList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
         YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space) + leftX;
-        btn.frame = CGRectMake(currentX, top + (height + top + top) * page, width, height);
+        btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
         if (i == 38){
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.tag = 902;
@@ -142,5 +143,9 @@
         }
     }
     return _deleteColor;
+}
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    YWKeyboardButton *btn = [_proviceCodeView viewWithTag:902];
+    btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
 }
 @end

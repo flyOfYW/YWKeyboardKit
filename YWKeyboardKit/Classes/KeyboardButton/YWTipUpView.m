@@ -141,7 +141,8 @@
     {
         // Generate the overlay
         UIBezierPath *bezierPath = [self inputViewPath];
-        NSString *inputString = self.button.input ? self.button.input : @"";
+        NSString *input = [self.button getCurrentInputText];
+        NSString *inputString =  input ? input : @"";
         
         // Position the overlay
         CGRect keyRect = [self convertRect:self.button.frame fromView:self.button.superview];

@@ -16,6 +16,7 @@
 #import "YWTipUpView.h"
 #import "YWLicensePlateView.h"
 #import "YWProvinceLicensePlatePrefixView.h"
+#import "YWNumCharKeyboardView.h"
 #import "YWNumPadKeyboardView.h"
 #import "TurtleBezierPath.h"
 

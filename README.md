@@ -13,6 +13,7 @@
 -  身份键盘
 -  数字键盘【支持小数点以及是否有效数字、小数点位数设置】
 -  安全键盘
+-  26个字母和特殊字符键盘【密码键盘】
 
 ## Installation
 
@@ -24,10 +25,12 @@ pod 'YWKeyboardKit'//包含所有的键盘
 pod 'YWKeyboardKit/LicensePlate'//只引入车牌键盘
 pod 'YWKeyboardKit/IdCard'//只引入身份键盘
 pod 'YWKeyboardKit/NumPad'//只引入数字键盘
+pod 'YWKeyboardKit/NumChar'//只引入字母和特殊符号键盘
+
 ```
 
 ## 效果图
-<img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/id_card_1%402x.png" width="200" height="120"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/id_card_2%402x.png" width="200" height="120"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_1%402x.png"   width="200" height="141"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_2%402x.png"   width="200" height="148"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_3%402x.png"   width="200" height="145"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/num_pad_1%402x.png"   width="200" height="131"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/num_pad_2%402x.png"   width="200" height="139">
+<img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/id_card_1%402x.png" width="200" height="120"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/id_card_2%402x.png" width="200" height="120"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_1%402x.png"   width="200" height="141"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_2%402x.png"   width="200" height="148"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/plate_3%402x.png"   width="200" height="145"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/num_pad_1%402x.png"   width="200" height="131"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/num_pad_2%402x.png"   width="200" height="139"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/num_char1%402x.png"   width="200" height="139"><img src="https://github.com/flyOfYW/YWKeyboardKit/blob/master/image_re/num_char2%402x.png"   width="200" height="139">
 
 
 ## Example
@@ -67,6 +70,10 @@ tf4.inputAccessoryView = toolbar2;
 ```
 
 ### 版本更新记录
+#### v0.1.6
+- 【新增】: 26个字母和特殊符号组合键盘。
+- 【新增】: 避免多个键同时被点击。
+- 【修复】: 修复暗黑模式适配图标的bug。
 #### v0.1.5
 - 【新增】: 长按删除效果。
 #### v0.1.4

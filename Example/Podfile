@@ -8,6 +8,10 @@ target 'YWKeyboardKit_Example' do
 #   pod 'YWKeyboardKit/InputToolbar', :path => '../'
 #   pod 'YWKeyboardKit/IdCard', :path => '../'
 #   pod 'YWKeyboardKit/NumPad', :path => '../'
+#   pod 'YWKeyboardKit/NumChar', :path => '../'
+
+
+
   target 'YWKeyboardKit_Tests' do
     inherit! :search_paths
 

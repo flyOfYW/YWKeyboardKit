@@ -168,13 +168,13 @@
     CGFloat top = 0;
     CGFloat width = _itemWidth;
     CGFloat height = 0.34 * width;
-
+    CGFloat fixedHeight = height + space;
     for (NSString *kText in self.numDecimalList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
         YWKeyboardDownButton *btn = [self createBtnWith:kText];
         CGFloat currentX = index * (width + space);
-        btn.frame = CGRectMake(currentX, top + (height + space) * page, width, height);
+        btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
         [self addSubview:btn];
         i ++;
     }
@@ -186,7 +186,7 @@
     CGFloat top = 0;
     CGFloat width = _itemWidth;
     CGFloat height = 0.34 * width;
-
+    CGFloat fixedHeight = height + space;
     for (NSString *kText in self.numList) {
         NSInteger index = i % lineItem;
         NSInteger page  = i / lineItem;
@@ -200,7 +200,7 @@
             btn.keyColor = [UIColor clearColor];
             btn.specificNoDown = YES;
         }
-        btn.frame = CGRectMake(currentX, top + (height + space) * page, width, height);
+        btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
         [self addSubview:btn];
         i ++;
     }
@@ -211,6 +211,7 @@
     if ([kText isEqual:@""]) {
         btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
         btn.keyColor = self.deleteColor;
+        btn.tag = 902;
         [self numPad_addLongGesAction:btn];
     }else if([kText isEqual:@"."]){
         btn.keyColor = self.deleteColor;
@@ -325,5 +326,11 @@
         }
     }
     return _deleteColor;
+}
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    YWKeyboardButton *btn = [self viewWithTag:902];
+    if (btn) {
+        btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
+    }
 }
 @end

@@ -30,8 +30,7 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 
 @protocol YWKeyboardButtonDelegate <NSObject>
 @optional
-
-/**执行YWKeyboardButton内部的TouchUpInside，YES-继续执行内部的实现，NO-不需要执行*/
+/**执行YWKeyboardButton内部的TouchUpInside，YES-继续执行内部的实现，NO-不需要执行（YES:输入字符，NO-不需要输入字符）*/
 - (BOOL)interceptorTouchUpInside:(UIButton *)button;
 
 /// 是否需要点击放大效果
@@ -42,12 +41,18 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 /// @param button 当前操作对象
 - (BOOL)needDownGrayEffect:(UIButton *)button;
 
+/// 按下的回调
+/// @param button 当前操作对象
+- (void)handleTouchDownForState:(UIButton *)button;
+
 @end
 
 @protocol YWKeyboardButtonDataSource <NSObject>
 @optional
 /**是否录入有效数字,0-可以随意输入，1-保留一位小数点的有效数字，n-保留n位小数点的有效数字*/
 - (NSInteger)isEffectiveDigitForInput:(UIButton *)button;
+
+
 @end
 
 
@@ -57,6 +62,8 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 @interface YWKeyboardButton : UIButton
 
 @property (nonatomic, strong) NSString *input;
+/**normal  selected 不一致*/
+@property (nonatomic, strong) NSString *inputSelected;
 /**键盘颜色*/
 @property (nonatomic, strong) UIColor *keyColor;
 /**键盘上的文字颜色*/
@@ -78,6 +85,8 @@ typedef NS_ENUM(NSUInteger, YWKeyboardButtonPosition) {
 
 @property (nonatomic, copy, nullable) UIImage *iconImage;
 
+/// 获取当前的文字，由于加入了大小字母
+- (NSString *)getCurrentInputText;
 @end
 
 

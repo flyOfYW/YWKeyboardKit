@@ -85,6 +85,18 @@ end
 
 
 
+s.subspec 'NumChar' do |ns|
+ns.source_files = 'YWKeyboardKit/Classes/NumChar/*.{h,m}'
+
+ns.dependency 'YWKeyboardKit/KeyboardButton'
+
+ns.resource_bundles = {
+'YWKeyboardKit' => ['YWKeyboardKit/Assets/*.xcassets']
+}
+end
+
+
+
 
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
