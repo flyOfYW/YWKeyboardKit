@@ -25,7 +25,7 @@ pod 'YWKeyboardKit'//包含所有的键盘
 pod 'YWKeyboardKit/LicensePlate'//只引入车牌键盘
 pod 'YWKeyboardKit/IdCard'//只引入身份键盘
 pod 'YWKeyboardKit/NumPad'//只引入数字键盘
-pod 'YWKeyboardKit/NumChar'//只引入字母和特殊符号键盘
+pod 'YWKeyboardKit/NumSpecChara'//只引入字母和特殊符号键盘
 
 ```
 
