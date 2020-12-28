@@ -8,6 +8,7 @@
 #import "YWInputToolbar.h"
 
 @interface YWInputToolbar ()
+@property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIButton *leftBarButton;
 @property (nonatomic, strong) UIButton *titleBarButton;
 @property (nonatomic, strong) UIButton *doneBarButton;
@@ -17,17 +18,7 @@
 
 @implementation YWInputToolbar
 
-+ (void)initialize{
-    [super initialize];
-    YWInputToolbar *appearanceProxy = [self appearance];
-    NSArray <NSNumber*> *positions = @[@(UIBarPositionAny),@(UIBarPositionBottom),@(UIBarPositionTop),@(UIBarPositionTopAttached)];
-    
-    for (NSNumber *position in positions){
-        UIToolbarPosition toolbarPosition = [position unsignedIntegerValue];
-        [appearanceProxy setBackgroundImage:nil forToolbarPosition:toolbarPosition barMetrics:UIBarMetricsDefault];
-        [appearanceProxy setShadowImage:nil forToolbarPosition:toolbarPosition];
-    }
-}
+
 + (instancetype)getInputToolbar:(id<UITextInput>)textInput{
     YWInputToolbar *toolbar = [[YWInputToolbar alloc] initWithFrame:CGRectZero];
     toolbar.textInput = textInput;
@@ -36,30 +27,35 @@
 - (void)initialize{
     [self sizeToFit];
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.translucent = YES;
-//    self.barStyle = UIBarStyleDefault;
+    [self addSubview:self.topView];
     [self addSubview:self.leftBarButton];
     [self addSubview:self.titleBarButton];
     [self addSubview:self.doneBarButton];
+    [self barStyleAction];
 }
 
 - (void)barStyleAction{
-    if ([_textInput respondsToSelector:@selector(keyboardAppearance)]){
-        switch ([_textInput keyboardAppearance]){
-            case UIKeyboardAppearanceDark:
-            {
-                self.barStyle = UIBarStyleBlack;
-                [self setBarTintColor:nil];
+    if (@available(iOS 13.0, *)) {
+        self.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                return [UIColor colorWithRed:87.0/255.f green:87.0/255.f blue:87.0/255.f alpha:1];
+            }else{
+                return [UIColor colorWithRed:246.0/255.f green:246.0/255.f blue:246/255.f alpha:1];
             }
-                break;
-            default:
-            {
-                self.barStyle = UIBarStyleDefault;
-                self.barTintColor = _toolbarBarTintColor;
+        }];
+        self.topView.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                return [UIColor colorWithRed:118.0/255.f green:118.0/255.f blue:118.0/255.f alpha:1];
+            }else{
+                return [UIColor colorWithRed:230.0/255.f green:230.0/255.f blue:230.0/255.f alpha:1];
             }
-                break;
-        }
+        }];
+    } else {
+        self.backgroundColor = [UIColor colorWithRed:246.0/255.f green:246.0/255.f blue:246/255.f alpha:1];
+        
+        self.topView.backgroundColor = [UIColor colorWithRed:230.0/255.f green:230.0/255.f blue:230.0/255.f alpha:1];
     }
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -189,7 +185,12 @@
     }
     return _doneBarButton;
 }
-
+- (UIView *)topView{
+    if (!_topView) {
+        _topView = [UIView new];
+    }
+    return _topView;
+}
 
 - (CGSize)sizeThatFits:(CGSize)size{
     CGSize sizeThatFit = [super sizeThatFits:size];
@@ -198,20 +199,21 @@
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
-    [self barStyleAction];
+        
     CGFloat margin = 16;
     
     CGSize leftSize = [self.leftBarButton sizeThatFits:CGSizeMake(80, 44)];
 
     CGSize doneSize = [self.doneBarButton sizeThatFits:CGSizeMake(80, 44)];
 
+
     CGFloat maxWidth = CGRectGetWidth(self.frame) - (margin + leftSize.width) - (margin + doneSize.width) - margin * 2;
+    
+    _topView.frame = CGRectMake(0, 0, self.frame.size.width, 1);
     
     _leftBarButton.frame = CGRectMake(margin, 0, leftSize.width, 44);
     _titleBarButton.frame = CGRectMake(CGRectGetMaxX(_leftBarButton.frame) + margin, 0, maxWidth, 44);
     _doneBarButton.frame = CGRectMake(CGRectGetMaxX(_titleBarButton.frame) + margin, 0, doneSize.width, 44);
-
 }
 
 @end

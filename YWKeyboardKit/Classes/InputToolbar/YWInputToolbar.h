@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YWInputToolbar : UIToolbar
+@interface YWInputToolbar : UIView
 
 @property (nonatomic, weak,   readonly) id<UITextInput> textInput;
 /**颜色*/
