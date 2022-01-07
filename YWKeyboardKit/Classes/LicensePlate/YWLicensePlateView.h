@@ -22,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)getProvinceOrEnglishLicensePlate:(id<UITextInput>)textInput;
 
 
+/// 手动切换至英文键盘
+- (void)showEnglishNumView;
+
+/// 手动切换至省份键盘
+- (void)showProvinceView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -56,6 +56,16 @@
     }
     return self;
 }
+- (void)showEnglishNumView{
+    [self showNumPinView];
+    [self.timer invalidate];
+    self.timer = nil;
+}
+- (void)showProvinceView{
+    [self showProviceCodeView];
+    [self.timer invalidate];
+    self.timer = nil;
+}
 //MARK: -------- YWKeyboardButtonDelegate -----------
 - (BOOL)interceptorTouchUpInside:(YWKeyboardButton *)button{
     if (button.tag == 900) {//ABC
