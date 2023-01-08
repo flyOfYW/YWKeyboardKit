@@ -1,6 +1,6 @@
 {
   "name": "YWKeyboardKit",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "summary": "自定义键盘",
   "description": "车牌输入的键盘(省份编号、字母、数字)，自定义身份证键盘，自定义有效数字键盘，自定义纯数字键盘",
   "homepage": "https://github.com/flyOfYW/YWKeyboardKit",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/flyOfYW/YWKeyboardKit.git",
-    "tag": "0.1.7"
+    "tag": "0.1.9"
   },
   "platforms": {
     "ios": "9.0"

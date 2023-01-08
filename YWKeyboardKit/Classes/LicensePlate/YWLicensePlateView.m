@@ -8,6 +8,11 @@
 #import "YWLicensePlateView.h"
 #import <YWKeyboardKit/YWKeyboardButton.h>
 
+
+
+
+
+
 @interface YWLicensePlateView ()<YWKeyboardButtonDelegate>
 
 @property (nonatomic, weak,  readwrite) id<UITextInput> textInput;
@@ -49,9 +54,9 @@
         [self createViewNumPinView];
         [self createViewProviceCodeView];
         if (number) {
-            _proviceCodeView.hidden = YES;
+            [self showNumPinView];
         }else{
-            _numPinView.hidden = YES;
+            [self showProviceCodeView];            
         }
     }
     return self;
@@ -103,7 +108,7 @@
 
 - (void)createViewProviceCodeView{
     
-    NSInteger lineItem = 10;
+    NSInteger lineItem = 9;
     CGFloat leftX = 5;
     CGFloat space = 6;
     NSInteger i = 0;
@@ -111,7 +116,7 @@
     CGFloat width = ([UIScreen mainScreen].bounds.size.width - (lineItem - 1) * space - leftX * 2)/lineItem;
     CGFloat height = 1.34375 * width;
     
-    CGFloat viewHeight = 4 * (top * 2 + height);
+    CGFloat viewHeight = 5 * (top * 2 + height);
     CGFloat both_x = YW_KEYBOARD_TABBARBOTTOM;
     self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, viewHeight + both_x);
     
@@ -135,18 +140,24 @@
         NSInteger page  = i / lineItem;
         YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space) + leftX;
-        btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
-        if (i == 30){//abc
+        if (i >= 37) {
+            currentX = index * (width + space) + leftX + width;
+        }
+        if (i == 36){//abc
+            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width+width, height);
             btn.tag = 900;
             btn.keyColor = self.deleteColor;
             btn.delegate = self;
             btn.titleLabel.font = font;
-        }else if (i == 39){//delete
+        }else if (i == 42){//delete
+            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width+width+space, height);
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.keyColor = self.deleteColor;
             btn.tag = 902;
             btn.delegate = self;
             [self addLongGesAction:btn];
+        }else{
+            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
         }
         btn.input = kText;
         btn.textInput = _textInput;
@@ -224,11 +235,39 @@
 - (void)showProviceCodeView{
     _numPinView.hidden = YES;
     _proviceCodeView.hidden = NO;
+    CGRect rect = self.frame;
+    rect.size.height = CGRectGetHeight(_proviceCodeView.frame)+YW_KEYBOARD_TABBARBOTTOM;
+    NSArray <NSLayoutConstraint *>* constraints = self.constraints;
+    BOOL isModity = NO;
+    for (NSLayoutConstraint *constraint in constraints) {
+        if(constraint.firstAttribute == NSLayoutAttributeHeight){
+            constraint.constant = rect.size.height;
+            isModity = YES;
+            break;
+        }
+    }
+    if(!isModity){
+        self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, rect.size.height);
+    }
 }
 
 - (void)showNumPinView{
     _proviceCodeView.hidden = YES;
     _numPinView.hidden = NO;
+    CGRect rect = self.frame;
+    rect.size.height = CGRectGetHeight(_numPinView.frame)+YW_KEYBOARD_TABBARBOTTOM;
+    NSArray <NSLayoutConstraint *>* constraints = self.constraints;
+    BOOL isModity = NO;
+    for (NSLayoutConstraint *constraint in constraints) {
+        if(constraint.firstAttribute == NSLayoutAttributeHeight){
+            constraint.constant = rect.size.height;
+            isModity = YES;
+            break;
+        }
+    }
+    if(!isModity){
+        self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, rect.size.height);
+    }
 }
 //MARK: --- 长按 delete ----
 - (void)addLongGesAction:(YWKeyboardButton *) btn{
@@ -280,11 +319,18 @@
 }
 - (NSMutableArray *)proviceCodeList{
     if (!_proviceCodeList) {
+//        _proviceCodeList = [NSMutableArray arrayWithArray:
+//                            @[@"京",@"津",@"渝",@"沪",@"冀",@"晋",@"辽",@"吉",@"黑",@"苏",
+//                              @"浙",@"皖",@"闽",@"赣",@"鲁",@"豫",@"鄂",@"湘",@"粤",@"琼",
+//                              @"川",@"贵",@"云",@"陕",@"甘",@"青",@"蒙",@"桂",@"宁",@"新",
+//                              @"ABC", @"藏",@"使",@"领",@"警",@"学",@"港",@"澳",@"挂", @""
+//                            ]];
         _proviceCodeList = [NSMutableArray arrayWithArray:
-                            @[@"京",@"津",@"渝",@"沪",@"冀",@"晋",@"辽",@"吉",@"黑",@"苏",
-                              @"浙",@"皖",@"闽",@"赣",@"鲁",@"豫",@"鄂",@"湘",@"粤",@"琼",
-                              @"川",@"贵",@"云",@"陕",@"甘",@"青",@"蒙",@"桂",@"宁",@"新",
-                              @"ABC", @"藏",@"使",@"领",@"警",@"学",@"港",@"澳",@"挂", @""
+                            @[@"京",@"津",@"渝",@"沪",@"冀",@"晋",@"辽",@"吉",@"黑",
+                              @"苏",@"浙",@"皖",@"闽",@"赣",@"鲁",@"豫",@"鄂",@"湘",
+                              @"粤",@"琼",@"川",@"贵",@"云",@"陕",@"甘",@"青",@"蒙",
+                              @"桂",@"宁",@"新",@"藏",@"警",@"学",@"港",@"澳",@"使",
+                              @"ABC",@"领",@"挂",@"试",@"应",@"急",@""
                             ]];
     }
     return _proviceCodeList;
@@ -323,5 +369,8 @@
     YWKeyboardButton *btn1 = [_numPinView viewWithTag:902];
     btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
     btn1.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
+}
+- (void)layoutSubviews{
+    [super layoutSubviews];
 }
 @end
