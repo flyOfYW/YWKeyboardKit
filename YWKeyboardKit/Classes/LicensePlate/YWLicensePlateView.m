@@ -140,16 +140,16 @@
         NSInteger page  = i / lineItem;
         YWKeyboardButton *btn = [YWKeyboardButton buttonWithType:UIButtonTypeCustom];
         CGFloat currentX = index * (width + space) + leftX;
-        if (i >= 37) {
-            currentX = index * (width + space) + leftX + width;
-        }
+//        if (i >= 37) {
+//            currentX = index * (width + space) + leftX + width;
+//        }
         if (i == 36){//abc
-            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width+width, height);
+            btn.frame = CGRectMake(currentX, top + fixedHeight * page, width, height);
             btn.tag = 900;
             btn.keyColor = self.deleteColor;
             btn.delegate = self;
             btn.titleLabel.font = font;
-        }else if (i == 42){//delete
+        }else if (i == 43){//delete
             btn.frame = CGRectMake(currentX, top + fixedHeight * page, width+width+space, height);
             btn.iconImage = [self getImageOnBundleWithImage:@"yw_keyboard_over"];
             btn.keyColor = self.deleteColor;
@@ -330,7 +330,7 @@
                               @"苏",@"浙",@"皖",@"闽",@"赣",@"鲁",@"豫",@"鄂",@"湘",
                               @"粤",@"琼",@"川",@"贵",@"云",@"陕",@"甘",@"青",@"蒙",
                               @"桂",@"宁",@"新",@"藏",@"警",@"学",@"港",@"澳",@"使",
-                              @"ABC",@"领",@"挂",@"试",@"应",@"急",@""
+                              @"ABC",@"领",@"挂",@"试",@"应",@"急",@"临",@""
                             ]];
     }
     return _proviceCodeList;

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YWKeyboardKit'
-    s.version          = '0.2.0'
+    s.version          = '0.2.1'
     s.summary          = '自定义键盘'
     
     # This description is used to generate tags and improve search results.
